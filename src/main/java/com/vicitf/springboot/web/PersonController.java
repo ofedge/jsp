@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,9 +27,9 @@ public class PersonController {
 		return "person";
 	}
 	
-	@RequestMapping("/findById")
+	@RequestMapping("/findById/{id}")
 	@ResponseBody
-	public Person findById(Long id){
+	public Person findById(@PathVariable Long id){
 		return personService.findById(1L);
 	}
 	

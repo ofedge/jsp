@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="/css/general.css">
 <script src="/js/jquery-1.11.2.min.js" ></script>
-<script src="js/general.js"></script>
+<script src="/js/general.js"></script>
 </head>
 <body>
 	<p>This is index.</p>

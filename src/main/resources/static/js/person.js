@@ -1,8 +1,7 @@
 $(function(){
 	$.ajax({
-		url: '/findById',
-		data: {"id": 1},
-		type: 'post',
+		url: '/findById/1',
+		type: 'get',
 		success: function(data) {
 			$('#info').html('name: ' + data.name + ', email: ' + data.email);
 		}

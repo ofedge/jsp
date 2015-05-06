@@ -7,8 +7,8 @@
 <title>person</title>
 <link rel="stylesheet" type="text/css" href="/css/general.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
-<script src="js/general.js"></script>
-<script src="js/person.js"></script>
+<script src="/js/general.js"></script>
+<script src="/js/person.js"></script>
 </head>
 <body>
 	<p>Info:</p>
