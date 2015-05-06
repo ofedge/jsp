@@ -15,8 +15,5 @@
 	<p>
 		<a href="/person">person</a>
 	</p>
-	<p>
-		<a href="/persons">persons</a>
-	</p>
 </body>
 </html>

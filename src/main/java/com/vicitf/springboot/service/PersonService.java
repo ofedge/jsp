@@ -20,4 +20,12 @@ public class PersonService {
 	public List<Person> findAll() {
 		return personRepository.findAll();
 	}
+	
+	public List<Person> findByName(String name) {
+		return personRepository.findByName(name);
+	}
+	
+	public List<Person> findByEmail(String email) {
+		return personRepository.findByEmail(email);
+	}
 }

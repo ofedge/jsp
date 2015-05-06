@@ -1,10 +1,12 @@
 package com.vicitf.springboot.web;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vicitf.springboot.domain.Person;
 import com.vicitf.springboot.service.PersonService;
@@ -20,15 +22,31 @@ public class PersonController {
 	}
 	
 	@RequestMapping("/person")
-	public String person(Map<String, Object> model){
-		Person p = personService.findById(1L);
-		model.put("person", p);
+	public String person(){
 		return "person";
 	}
 	
-	@RequestMapping("/persons")
-	public String persons(Map<String, Object> model) {
-		model.put("persons", personService.findAll());
-		return "persons";
+	@RequestMapping("/findById")
+	@ResponseBody
+	public Person findById(Long id){
+		return personService.findById(1L);
+	}
+	
+	@RequestMapping("/findAll")
+	@ResponseBody
+	public List<Person> findAll(Map<String, Object> model) {
+		return personService.findAll();
+	}
+	
+	@RequestMapping("/findByName")
+	@ResponseBody
+	public List<Person> findByName(String name) {
+		return personService.findByName(name);
+	}
+	
+	@RequestMapping("/findByEmail")
+	@ResponseBody
+	public List<Person> findByEmail(String email) {
+		return personService.findByEmail(email);
 	}
 }

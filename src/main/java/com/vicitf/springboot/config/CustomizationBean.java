@@ -18,7 +18,7 @@ public class CustomizationBean implements EmbeddedServletContainerCustomizer {
     public void customize(ConfigurableEmbeddedServletContainer container) {
         container.setPort(PORT);
         container.setSessionTimeout(SESSION_TIME_OUT, TimeUnit.MINUTES);
-        container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.jsp"));
+        container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"));
     }
 
 }
