@@ -27,6 +27,12 @@ public class PersonController {
 		return "person";
 	}
 	
+	@RequestMapping("/foo")
+	@ResponseBody
+	public String foo() {
+		throw new IllegalArgumentException("server error");
+	}
+	
 	@RequestMapping("/findById/{id}")
 	@ResponseBody
 	public Person findById(@PathVariable Long id){
