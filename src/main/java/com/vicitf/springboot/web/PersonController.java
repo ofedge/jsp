@@ -27,6 +27,12 @@ public class PersonController {
 		return "person";
 	}
 	
+	@RequestMapping("/save")
+	@ResponseBody
+	public Person save(Person p) {
+		return personService.save(p);
+	}
+	
 	@RequestMapping("/foo")
 	@ResponseBody
 	public String foo() {

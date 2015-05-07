@@ -16,6 +16,9 @@ import com.vicitf.springboot.domain.Person;
  */
 public interface PersonRepository extends JpaRepository<Person, Long> {
 	
+	@SuppressWarnings("unchecked")
+	Person save(Person p);
+	
 	Person findById(Long id);
 	
 	List<Person> findAll();
