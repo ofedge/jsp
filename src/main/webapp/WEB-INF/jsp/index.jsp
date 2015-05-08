@@ -11,9 +11,13 @@
 <script src="/js/general.js"></script>
 </head>
 <body>
-	<p>This is index.</p>
-	<p>
-		<a href="/person">person</a>
-	</p>
+	<fieldset>
+		<legend>login</legend>
+		<form action="/login">
+			<p>username: <input type="text" name="username", id="username" /></p>
+			<p>password: <input type="password", name="password", id="password" /></p>
+			<p><input type="submit" value="login" id="login" /></p>
+		</form>
+	</fieldset>
 </body>
 </html>

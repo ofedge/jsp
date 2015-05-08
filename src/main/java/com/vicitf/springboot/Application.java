@@ -3,7 +3,7 @@ package com.vicitf.springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.vicitf.springboot.config.MyBanner;
+import com.vicitf.springboot.config.Banner.MyBanner;
 
 @SpringBootApplication //相当于同时使用了@Configuration@EnableAutoConfiguration和@ComponentScan的默认配置
 public class Application {

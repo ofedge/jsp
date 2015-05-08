@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,9 @@
 <script src="/js/person.js"></script>
 </head>
 <body>
+	<c:if test="${!empty loginUser }">
+		<p>welcome, ${loginUser }. <a href="/logout">logout</a></p>
+	</c:if>
 	<fieldset>
 		<legend>add person</legend>
 		<form id="add_person">
