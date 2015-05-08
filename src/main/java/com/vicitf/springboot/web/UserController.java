@@ -15,12 +15,12 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public String index(){
+	public String homePage(){
 		return "redirect:index";
 	}
 	
 	@RequestMapping("/index")
-	public String login(){
+	public String index(){
 		return "index";
 	}
 	
