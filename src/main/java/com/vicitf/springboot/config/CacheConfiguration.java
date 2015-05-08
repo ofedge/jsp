@@ -7,6 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+/**
+ * EhCache
+ * 
+ * @author vicitf
+ *
+ */
 @Configuration
 @EnableCaching
 public class CacheConfiguration {

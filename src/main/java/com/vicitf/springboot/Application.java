@@ -6,6 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.vicitf.springboot.config.Banner.MyBanner;
 import com.vicitf.springboot.config.listener.StartupListener;
 
+/**
+ * Main Class
+ * 
+ * @author vicitf
+ *
+ */
 @SpringBootApplication //相当于同时使用了@Configuration@EnableAutoConfiguration和@ComponentScan的默认配置
 public class Application {
 	public static void main(String[] args) {
