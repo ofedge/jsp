@@ -46,6 +46,7 @@ public class UserController {
 			}
 			onlineUsers.put(loginUser, session.getId());
 			System.out.println("-----" + loginUser + "上线了-----");
+			System.out.println("-----当前在线: " + onlineUsers.size() + "人-----");
 			return "redirect:person";
 		} else {
 			return "redirect:index";
