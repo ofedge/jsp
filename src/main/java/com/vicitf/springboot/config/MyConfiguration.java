@@ -1,5 +1,9 @@
 package com.vicitf.springboot.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -9,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.config.filter.LoginFilter;
+import com.vicitf.springboot.param.CommonParam;
 
 /**
  * Configruation
@@ -32,12 +37,15 @@ public class MyConfiguration {
 	public ServletContextListener listener() {
 		return new ServletContextListener() {
 			@Override
-			public void contextDestroyed(ServletContextEvent arg0) {
-				System.out.println("-----contextDestroyed-----");
+			public void contextInitialized(ServletContextEvent event) {
+				System.out.println("-----contextInitialized-----");
+				ServletContext context = event.getServletContext();
+				Map<String, String> onlineUser = new HashMap<String, String>();
+				context.setAttribute(CommonParam.ONLINE_USERS, onlineUser);
 			}
 			@Override
-			public void contextInitialized(ServletContextEvent arg0) {
-				System.out.println("-----contextInitialized-----");
+			public void contextDestroyed(ServletContextEvent event) {
+				System.out.println("-----contextDestroyed-----");
 			}
 		};
 	}
