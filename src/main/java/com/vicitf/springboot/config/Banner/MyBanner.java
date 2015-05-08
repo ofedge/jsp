@@ -13,12 +13,13 @@ import org.springframework.core.env.Environment;
  */
 public class MyBanner implements Banner {
 	private static final String[] BANNER = {
+		"",
 		"**************************",
 		"--------------------------",
 		"==========BANNER=========",
 		"--------------------------",
 		"**************************",
-		"--          --          --"
+		""
 	};
 
 	@Override

@@ -35,6 +35,7 @@ public class UserController {
 		if (user != null) {
 			String loginUser = user.getUsername();
 			session.setAttribute("loginUser", loginUser);
+			System.out.println("-----" + loginUser + "上线了-----");
 			return "redirect:person";
 		} else {
 			return "redirect:index";
@@ -43,7 +44,9 @@ public class UserController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
+		String loginUser = (String) session.getAttribute("loginUser");
 		session.invalidate();
+		System.out.println("-----" + loginUser + "下线了------");
 		return "redirect:index";
 	}
 }
