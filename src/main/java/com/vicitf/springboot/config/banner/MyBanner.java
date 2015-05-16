@@ -1,4 +1,4 @@
-package com.vicitf.springboot.config.Banner;
+package com.vicitf.springboot.config.banner;
 
 import java.io.PrintStream;
 
@@ -13,13 +13,13 @@ import org.springframework.core.env.Environment;
  */
 public class MyBanner implements Banner {
 	private static final String[] BANNER = {
-		"",
-		"**************************",
-		"--------------------------",
-		"==========BANNER=========",
-		"--------------------------",
-		"**************************",
-		""
+		"      V      i  c   i    t       f",
+		"  __     __  _      _    _       __      ",
+		"  \\ \\    / /(_)_ _ (_)__| |__ __/ /_   ",
+		"   \\ \\  / / | | / /| |__| |__|_  __|   ",
+		"    \\ \\/ /  | || | | |  | |    | |     ",
+		"     \\__/___| |_\\ \\| |___\\ \\___| |_ ",
+		"  ============================/ /=====  "
 	};
 
 	@Override

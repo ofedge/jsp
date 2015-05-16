@@ -3,7 +3,7 @@ package com.vicitf.springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.vicitf.springboot.config.Banner.MyBanner;
+import com.vicitf.springboot.config.banner.MyBanner;
 import com.vicitf.springboot.config.listener.StartupListener;
 
 /**
