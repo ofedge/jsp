@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.vicitf.springboot.domain.Person;
+import com.vicitf.springboot.domain.secondary.Person;
 
 /**
  * 好神奇...

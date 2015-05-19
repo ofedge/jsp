@@ -9,7 +9,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
-import com.vicitf.springboot.domain.Person;
+import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.repository.PersonRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)

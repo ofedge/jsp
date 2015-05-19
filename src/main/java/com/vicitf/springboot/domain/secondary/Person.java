@@ -1,4 +1,4 @@
-package com.vicitf.springboot.domain;
+package com.vicitf.springboot.domain.secondary;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

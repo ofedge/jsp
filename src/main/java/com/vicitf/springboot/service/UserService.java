@@ -3,7 +3,7 @@ package com.vicitf.springboot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vicitf.springboot.domain.User;
+import com.vicitf.springboot.domain.primray.User;
 import com.vicitf.springboot.repository.UserRepository;
 
 @Service

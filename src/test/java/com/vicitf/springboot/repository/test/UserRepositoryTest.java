@@ -7,7 +7,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
-import com.vicitf.springboot.domain.User;
+import com.vicitf.springboot.domain.primray.User;
 import com.vicitf.springboot.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

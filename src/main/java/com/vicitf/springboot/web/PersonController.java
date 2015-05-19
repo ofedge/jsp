@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vicitf.springboot.domain.Person;
+import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.service.PersonService;
 
 @RestController
