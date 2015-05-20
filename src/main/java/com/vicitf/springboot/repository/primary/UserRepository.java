@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository;
+package com.vicitf.springboot.repository.primary;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

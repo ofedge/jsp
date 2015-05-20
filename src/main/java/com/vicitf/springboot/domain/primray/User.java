@@ -9,6 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name = "t_user", schema = "dbo", catalog = "test")
 @Table(name = "t_user")
 public class User {
 	private Long id;
@@ -24,6 +25,7 @@ public class User {
 	}
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@SequenceGenerator(name = "generator", sequenceName = "user_seq")
 	@Column(name = "id", length = 11)

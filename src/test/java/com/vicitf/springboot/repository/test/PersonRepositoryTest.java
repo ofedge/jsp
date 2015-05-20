@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.domain.secondary.Person;
-import com.vicitf.springboot.repository.PersonRepository;
+import com.vicitf.springboot.repository.secondary.PersonRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

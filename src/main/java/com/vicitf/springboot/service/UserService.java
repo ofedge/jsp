@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vicitf.springboot.domain.primray.User;
-import com.vicitf.springboot.repository.UserRepository;
+import com.vicitf.springboot.repository.primary.UserRepository;
 
 @Service
 public class UserService {

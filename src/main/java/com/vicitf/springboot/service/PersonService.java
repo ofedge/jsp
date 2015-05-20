@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.vicitf.springboot.domain.secondary.Person;
-import com.vicitf.springboot.repository.PersonRepository;
+import com.vicitf.springboot.repository.secondary.PersonRepository;
 
 @Service
 public class PersonService {

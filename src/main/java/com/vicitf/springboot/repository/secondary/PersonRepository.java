@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository;
+package com.vicitf.springboot.repository.secondary;
 
 import java.util.List;
 
