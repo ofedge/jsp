@@ -13,8 +13,18 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 
 	@Override
 	public void onApplicationEvent(ApplicationStartedEvent event) {
-		event.getSpringApplication();
 		System.out.println("-----I'm StartupListener.-----");
+		System.out.println("-----You will not wish to cross me.-----");
+		try {
+			System.out.println("3...");
+			Thread.sleep(100);
+			System.out.println("2...");
+			Thread.sleep(100);
+			System.out.println("1...");
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
