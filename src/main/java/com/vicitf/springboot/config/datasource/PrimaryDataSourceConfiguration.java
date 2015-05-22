@@ -3,6 +3,7 @@ package com.vicitf.springboot.config.datasource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.logicalcobwebs.proxool.ProxoolDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -31,6 +32,7 @@ public class PrimaryDataSourceConfiguration {
 	@Primary // 不要的话会报NoUniqueBeanDefinitionException, 多个DataSource必须有一个为Primary
 	@ConfigurationProperties(prefix = "datasource.primary")
 	public DataSource primaryDataSource() {
+		ProxoolDataSource dataSource = new ProxoolDataSource();
 		return DataSourceBuilder.create().build();
 	}
 	

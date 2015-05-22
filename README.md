@@ -23,6 +23,10 @@ maven本地仓库安装sqlserver jdbc, 进入 sqljdbc4.jar所在文件夹:
 
 `mvn install:install-file -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar -Dfile=sqljdbc4.jar`
 
+maven本地仓库安装proxool-0.9.1, 进入 proxool-0.9.1.jar所在文件夹:
+
+`mvn install:install-file -DgroupId=proxool -DartifactId=proxool -Dversion=0.9.1 -Dpackaging=jar -Dfile=proxool-0.9.1.jar`
+
 使用:
 
 ```
@@ -36,5 +40,11 @@ maven本地仓库安装sqlserver jdbc, 进入 sqljdbc4.jar所在文件夹:
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>sqljdbc4</artifactId>
     <version>4.0</version>
+</dependency>
+
+<dependency>
+	<groupId>proxool</groupId>
+	<artifactId>proxool</artifactId>
+	<version>0.9.1</version>
 </dependency>
 ```
