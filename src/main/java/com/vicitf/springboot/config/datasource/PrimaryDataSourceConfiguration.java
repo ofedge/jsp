@@ -5,8 +5,7 @@ import javax.sql.DataSource;
 
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -25,15 +24,53 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		transactionManagerRef = "primayrTransactionManager") //同上, 但是不要也可以...
 public class PrimaryDataSourceConfiguration {
 	
+	@Value("${datasource.primary.alias}")
+	private String alias;
+	
+	@Value("${datasource.primary.url}")
+	private String url;
+	
+	@Value("${datasource.primary.driver-class-name}")
+	private String driver;
+	
+	@Value("${datasource.primary.username}")
+	private String username;
+	
+	@Value("${datasource.primary.password}")
+	private String password;
+	
+	@Value("${datasource.primary.protoTypeCount}")
+	private int protoTypeCount;
+	
+	@Value("${datasource.primary.simultaneousBuildThrottle}")
+	private int simultaneousBuildThrottle;
+	
+	@Value("${datasource.primary.minimumConnectionCount}")
+	private int minimumConnectionCount;
+	
+	@Value("${datasource.primary.maximumConnectionCount}")
+	private int maximumConnectionCount;
+	
+	@Value("${datasource.primary.houseKeepingSleepTime}")
+	private int houseKeepingSleepTime;
+	
 	@Autowired
     JpaVendorAdapter jpaVendorAdapter;
 	
 	@Bean
 	@Primary // 不要的话会报NoUniqueBeanDefinitionException, 多个DataSource必须有一个为Primary
-	@ConfigurationProperties(prefix = "datasource.primary")
 	public DataSource primaryDataSource() {
-		ProxoolDataSource dataSource = new ProxoolDataSource();
-		return DataSourceBuilder.create().build();
+		ProxoolDataSource dataSource = new ProxoolDataSource(alias);
+		dataSource.setDriver(driver);
+		dataSource.setDriverUrl(url);
+		dataSource.setUser(username);
+		dataSource.setPassword(password);
+		dataSource.setPrototypeCount(protoTypeCount); // 最少保持的空闲连接数
+		dataSource.setSimultaneousBuildThrottle(simultaneousBuildThrottle); // 同时最大连接数, 不设置时候报了个异常
+		dataSource.setMinimumConnectionCount(minimumConnectionCount); // 最小连接数
+		dataSource.setMaximumConnectionCount(maximumConnectionCount); // 最大连接数量，如果超过最大连接数量则会抛出异常。连接数设置过多，服务器CPU和内存性能消耗很大。
+		dataSource.setHouseKeepingSleepTime(houseKeepingSleepTime); // house keeper 保留线程处于睡眠状态的最长时间
+		return dataSource;
 	}
 	
 	@Bean

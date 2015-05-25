@@ -39,11 +39,11 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String uri = request.getRequestURI();
-		HttpSession session = request.getSession();
-		String loginUser = (String) session.getAttribute("loginUser");
 		if (uri.endsWith(".js") || uri.endsWith(".css") || uri.endsWith("index.jsp") || uri.endsWith("login") || uri.endsWith("index")) {
 			chain.doFilter(req, resp);
 		} else {
+			HttpSession session = request.getSession();
+			String loginUser = (String) session.getAttribute("loginUser");
 			if (loginUser == null) {
 				response.sendRedirect("index");
 			} else {

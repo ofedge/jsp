@@ -14,6 +14,8 @@
 必须指定访问index.html才行
 1. 多数据源配置, 第二数据源都是MySQL, 第一数据源一个Oracle, 一个是Sql_Server(一个比一个安装起来麻烦), 参照[multids-demo]("https://github.com/gratiartis/multids-demo","")
 报过各种各种错误, 最后还好出来了, 它的sample里很多代码都用不到
+1. 打包war文件, 去掉pom里build, 两个tomcat依赖加上<scope>provided</scope>, Applicaton类继承SpringBootServletInitializer, 同时自定义条幅设置位置放在configure方法里
+1. 去配置过程, 虽然可以把数据库连接都直接以字符串形式写在dataSource里, 但是还是写perperties里吧, 怎么可能零配置嘛...
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

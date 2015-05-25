@@ -8,6 +8,12 @@ import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+/**
+ * 打包war情况下, 貌似端口设置是没用的...
+ * 
+ * @author vicitf
+ *
+ */
 @Component
 public class CustomizationBean implements EmbeddedServletContainerCustomizer {
 	
