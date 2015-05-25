@@ -53,6 +53,7 @@ public class Person {
 		this.email = email;
 	}
 	
+	@Column(name = "age", length = 3)
 	public Integer getAge() {
 		return age;
 	}
@@ -61,6 +62,7 @@ public class Person {
 		this.age = age;
 	}
 
+	@Column(name = "gender", length = 10)
 	public String getGender() {
 		return gender;
 	}
