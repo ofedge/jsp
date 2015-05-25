@@ -2,6 +2,8 @@ package com.vicitf.springboot.repository.secondary;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,4 +30,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	@Query(value = "SELECT * FROM t_person P WHERE P.EMAIL LIKE %:email%", nativeQuery = true)
 	List<Person> findByEmail(@Param("email") String email);
+	
+	Page<Person> findAll(Pageable pageable);
 }

@@ -16,6 +16,8 @@
 报过各种各种错误, 最后还好出来了, 它的sample里很多代码都用不到
 1. 打包war文件, 去掉pom里build, 两个tomcat依赖加上<scope>provided</scope>, Applicaton类继承SpringBootServletInitializer, 同时自定义条幅设置位置放在configure方法里
 1. 去配置过程, 虽然可以把数据库连接都直接以字符串形式写在dataSource里, 但是还是写perperties里吧, 怎么可能零配置嘛...
+1. 不同的数据源, HibernateJpaVendorAdapter要设置不同的数据库, 之前没用复杂的查询所以没发现我的secondary数据库用的也是primary数据库的设置
+1. 用了spring data jpa的分页, 有点让人不舒服的, PageRequest(Pageable的一个实现类)的page属性, 是从0开始的
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

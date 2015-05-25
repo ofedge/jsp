@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -57,7 +59,12 @@ public class SecondaryDataSourceConfiguration {
 	private int houseKeepingSleepTime;
 	
 	@Autowired
-    JpaVendorAdapter jpaVendorAdapter;
+	HibernateJpaVendorAdapter jpaVendorAdapter;
+	
+	private JpaVendorAdapter jpaVendorAdapter() {
+		jpaVendorAdapter.setDatabase(Database.MYSQL);
+        return jpaVendorAdapter;
+    }
 	
 	@Bean
 	public DataSource secondaryDataSource() {
@@ -80,7 +87,7 @@ public class SecondaryDataSourceConfiguration {
 		entityManager.setDataSource(secondaryDataSource());
 		entityManager.setPackagesToScan("com.vicitf.springboot.domain.secondary");
 		entityManager.setPersistenceUnitName("secondaryPersistentUnit");
-		entityManager.setJpaVendorAdapter(jpaVendorAdapter);
+		entityManager.setJpaVendorAdapter(jpaVendorAdapter());
 		entityManager.afterPropertiesSet();
 		return entityManager.getObject();
 	}

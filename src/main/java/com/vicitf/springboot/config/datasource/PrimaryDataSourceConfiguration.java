@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -55,7 +57,13 @@ public class PrimaryDataSourceConfiguration {
 	private int houseKeepingSleepTime;
 	
 	@Autowired
-    JpaVendorAdapter jpaVendorAdapter;
+	HibernateJpaVendorAdapter jpaVendorAdapter;
+	
+	private JpaVendorAdapter jpaVendorAdapter() {
+//        jpaVendorAdapter.setDatabase(Database.ORACLE);
+        jpaVendorAdapter.setDatabase(Database.SQL_SERVER);
+        return jpaVendorAdapter;
+    }
 	
 	@Bean
 	@Primary // 不要的话会报NoUniqueBeanDefinitionException, 多个DataSource必须有一个为Primary
@@ -79,7 +87,7 @@ public class PrimaryDataSourceConfiguration {
 		entityManager.setDataSource(primaryDataSource());
 		entityManager.setPackagesToScan("com.vicitf.springboot.domain.primray");
 		entityManager.setPersistenceUnitName("primaryPersistentUnit");
-		entityManager.setJpaVendorAdapter(jpaVendorAdapter);
+		entityManager.setJpaVendorAdapter(jpaVendorAdapter());
 		entityManager.afterPropertiesSet(); // 不要的话会报NullPointerException
 		return entityManager.getObject();
 	}
