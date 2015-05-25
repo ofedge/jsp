@@ -15,6 +15,7 @@ public class Person {
 	private String email;
 	private Integer age;
 	private String gender;
+	private Long countryId;
 
 	public Person() {
 	}
@@ -71,10 +72,19 @@ public class Person {
 		this.gender = gender;
 	}
 
+	@Column(name = "country_id", length = 11)
+	public Long getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Long countryId) {
+		this.countryId = countryId;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", email=" + email
-				+ ", age=" + age + ", gender=" + gender + "]";
+		return "Person [id=" + id + ", name=" + name + ", email=" + email + ", age=" + age + ", gender=" + gender
+				+ ", countryId=" + countryId + "]";
 	}
 
 }

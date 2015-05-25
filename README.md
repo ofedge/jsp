@@ -18,6 +18,9 @@
 1. 去配置过程, 虽然可以把数据库连接都直接以字符串形式写在dataSource里, 但是还是写perperties里吧, 怎么可能零配置嘛...
 1. 不同的数据源, HibernateJpaVendorAdapter要设置不同的数据库, 之前没用复杂的查询所以没发现我的secondary数据库用的也是primary数据库的设置
 1. 用了spring data jpa的分页, 有点让人不舒服的, PageRequest(Pageable的一个实现类)的page属性, 是从0开始的
+1. 切换oracle要修改的东西, application.properties的数据库连接配置, User的注解类和PrimaryDataSourceConfiguration类中JpaVendorAdapterConfiguration的database. 
+刚换成oracle时候连接报错了, 找原因, 找了一会儿没找到, 再试, 好了...
+1. 继续增加字段, 新增country类, 折腾maven折腾了半天...
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 
