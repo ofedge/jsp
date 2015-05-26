@@ -21,6 +21,7 @@
 1. 切换oracle要修改的东西, application.properties的数据库连接配置, User的注解类和PrimaryDataSourceConfiguration类中JpaVendorAdapterConfiguration的database. 
 刚换成oracle时候连接报错了, 找原因, 找了一会儿没找到, 再试, 好了...
 1. 继续增加字段, 新增country类, 折腾maven折腾了半天...
+1. 分页findAll(Pageable pageable)方法加上缓存使用不正常了, 即使查询参数变了, 还是从缓存中读取数据
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

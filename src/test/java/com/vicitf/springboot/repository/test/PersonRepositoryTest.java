@@ -16,13 +16,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.domain.secondary.Person;
-import com.vicitf.springboot.repository.secondary.PersonRepository;
+import com.vicitf.springboot.service.PersonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 public class PersonRepositoryTest {
 	@Autowired
-	private PersonRepository pr;
+	private PersonService pr;
 	
 	@Test
 	public void findByIdTest() {
@@ -32,30 +32,6 @@ public class PersonRepositoryTest {
 	
 	@Test
 	public void findAllTest() {
-		List<Person> list = pr.findAll();
-		for (Person p : list) {
-			System.out.println(p);
-		}
-	}
-	
-	@Test
-	public void findByName() {
-		List<Person> list = pr.findByName("jon");
-		for (Person p : list) {
-			System.out.println(p);
-		}
-	}
-	
-	@Test
-	public void findByEmail() {
-		List<Person> list = pr.findByEmail("jon@gmail.com");
-		for (Person p : list) {
-			System.out.println(p);
-		}
-	}
-	
-	@Test
-	public void findAllTest2() {
 //		Page<Person> page = pr.findAll(new PageRequest(0, 10));
 //		Page<Person> page = pr.findAll(new PageRequest(0, 10, Direction.ASC, "age", "id"));
 //		Page<Person> page = pr.findAll(new PageRequest(0, 10, new Sort(Direction.ASC, "age", "id")));
@@ -73,6 +49,22 @@ public class PersonRepositoryTest {
 		System.out.println("is last: " + page.isLast());
 		System.out.println("has content : " + page.hasContent());
 		List<Person> list = page.getContent();
+		for (Person p : list) {
+			System.out.println(p);
+		}
+	}
+	
+	@Test
+	public void findByName() {
+		List<Person> list = pr.findByName("jon");
+		for (Person p : list) {
+			System.out.println(p);
+		}
+	}
+	
+	@Test
+	public void findByEmail() {
+		List<Person> list = pr.findByEmail("jon@gmail.com");
 		for (Person p : list) {
 			System.out.println(p);
 		}

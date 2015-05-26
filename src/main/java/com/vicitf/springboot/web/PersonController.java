@@ -1,9 +1,12 @@
 package com.vicitf.springboot.web;
 
 import java.util.List;
-import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,8 @@ import com.vicitf.springboot.service.PersonService;
 
 @RestController
 public class PersonController {
+	private Log log = LogFactory.getLog(getClass()); 
+	
 	@Autowired
 	private PersonService personService;
 	
@@ -23,7 +28,8 @@ public class PersonController {
 	
 	@RequestMapping("/foo")
 	public String foo() {
-		throw new IllegalArgumentException("server error");
+		log.error("Server Error: foo");
+		throw new IllegalArgumentException("Server Error: foo");
 	}
 	
 	@RequestMapping("/findById/{id}")
@@ -32,8 +38,8 @@ public class PersonController {
 	}
 	
 	@RequestMapping("/findAll")
-	public List<Person> findAll(Map<String, Object> model) {
-		return personService.findAll();
+	public Page<Person> findAll(Integer number, Integer size) {
+		return personService.findAll(new PageRequest(number, size));
 	}
 	
 	@RequestMapping("/findByName")

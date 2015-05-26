@@ -2,6 +2,9 @@ package com.vicitf.springboot.domain.secondary;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +15,8 @@ public class Country {
 	private String region;
 	private String code;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", length = 11)
 	public Long getId() {
 		return id;

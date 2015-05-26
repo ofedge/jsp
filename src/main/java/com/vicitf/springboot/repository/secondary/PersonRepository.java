@@ -23,7 +23,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	Person findById(Long id);
 	
-	List<Person> findAll();
+	Page<Person> findAll(Pageable pageable);
 	
 	@Query("select p from Person p where p.name like %?1%")
 	List<Person> findByName(String name);
@@ -31,5 +31,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	@Query(value = "SELECT * FROM t_person P WHERE P.EMAIL LIKE %:email%", nativeQuery = true)
 	List<Person> findByEmail(@Param("email") String email);
 	
-	Page<Person> findAll(Pageable pageable);
 }
