@@ -15,6 +15,7 @@ import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.service.PersonService;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
 	private Log log = LogFactory.getLog(getClass()); 
 	
@@ -38,7 +39,7 @@ public class PersonController {
 	}
 	
 	@RequestMapping("/findAll")
-	public Page<Person> findAll(Integer number, Integer size) {
+	public Page<Person> findAll(int number, int size) {
 		return personService.findAll(new PageRequest(number, size));
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 
 /**
@@ -31,4 +32,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	@Query(value = "SELECT * FROM t_person P WHERE P.EMAIL LIKE %:email%", nativeQuery = true)
 	List<Person> findByEmail(@Param("email") String email);
 	
+	List<PersonBean> findAllPersonsWithCountry();
 }

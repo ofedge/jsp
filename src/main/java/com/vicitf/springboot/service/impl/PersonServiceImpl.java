@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.repository.secondary.PersonRepository;
 import com.vicitf.springboot.service.PersonService;
@@ -44,5 +45,10 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public List<Person> findByEmail(String email) {
 		return personRepository.findByEmail(email);
+	}
+
+	@Override
+	public List<PersonBean> findAllPersonsWithCountry() {
+		return personRepository.findAllPersonsWithCountry();
 	}
 }

@@ -27,9 +27,9 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("/person")
-	public String person(){
-		return "person";
+	@RequestMapping("/main")
+	public String main(){
+		return "main";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -47,7 +47,7 @@ public class UserController {
 			onlineUsers.put(loginUser, session.getId());
 			System.out.println("-----" + loginUser + "上线了-----");
 			System.out.println("-----当前在线: " + onlineUsers.size() + "人-----");
-			return "redirect:person";
+			return "redirect:main";
 		} else {
 			return "redirect:index";
 		}

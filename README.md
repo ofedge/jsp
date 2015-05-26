@@ -22,6 +22,8 @@
 刚换成oracle时候连接报错了, 找原因, 找了一会儿没找到, 再试, 好了...
 1. 继续增加字段, 新增country类, 折腾maven折腾了半天...
 1. 分页findAll(Pageable pageable)方法加上缓存使用不正常了, 即使查询参数变了, 还是从缓存中读取数据
+1. 自定义查询, 新建一个自定义Repository, 名字以对应Repository+Impl格式, 但不继承Repository, 在Repository写的方法在Impl类中实现, 框架会识别的,
+查询结果返回自定义bean, 需要调用query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(Bean.class)), 挺好, hibernate还要自己去实现这个方法
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

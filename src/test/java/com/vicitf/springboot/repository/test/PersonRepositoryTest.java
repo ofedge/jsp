@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
+import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.service.PersonService;
 
@@ -22,11 +23,11 @@ import com.vicitf.springboot.service.PersonService;
 @SpringApplicationConfiguration(classes = Application.class)
 public class PersonRepositoryTest {
 	@Autowired
-	private PersonService pr;
+	private PersonService ps;
 	
 	@Test
 	public void findByIdTest() {
-		Person p = pr.findById(1L);
+		Person p = ps.findById(1L);
 		System.out.println(p);
 	}
 	
@@ -38,7 +39,7 @@ public class PersonRepositoryTest {
 		List<Order> orderList = new ArrayList<Order>();
 		orderList.add(new Order(Direction.ASC, "age"));
 		orderList.add(new Order(Direction.ASC, "id"));
-		Page<Person> page = pr.findAll(new PageRequest(0, 10, new Sort(orderList)));
+		Page<Person> page = ps.findAll(new PageRequest(0, 10, new Sort(orderList)));
 		System.out.println("numbers : " + page.getNumber());
 		System.out.println("number of elements : " + page.getNumberOfElements());
 		System.out.println("size : " + page.getSize());
@@ -56,7 +57,7 @@ public class PersonRepositoryTest {
 	
 	@Test
 	public void findByName() {
-		List<Person> list = pr.findByName("jon");
+		List<Person> list = ps.findByName("jon");
 		for (Person p : list) {
 			System.out.println(p);
 		}
@@ -64,9 +65,17 @@ public class PersonRepositoryTest {
 	
 	@Test
 	public void findByEmail() {
-		List<Person> list = pr.findByEmail("jon@gmail.com");
+		List<Person> list = ps.findByEmail("jon");
 		for (Person p : list) {
 			System.out.println(p);
+		}
+	}
+	
+	@Test
+	public void findAllPersonsWithCountryTest() {
+		List<PersonBean> list = ps.findAllPersonsWithCountry();
+		for (PersonBean pb : list) {
+			System.out.println(pb);
 		}
 	}
 }
