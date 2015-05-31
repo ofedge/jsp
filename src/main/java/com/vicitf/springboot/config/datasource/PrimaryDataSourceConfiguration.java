@@ -60,8 +60,8 @@ public class PrimaryDataSourceConfiguration {
 	HibernateJpaVendorAdapter jpaVendorAdapter;
 	
 	private JpaVendorAdapter jpaVendorAdapter() {
-//        jpaVendorAdapter.setDatabase(Database.ORACLE);
-        jpaVendorAdapter.setDatabase(Database.SQL_SERVER);
+        jpaVendorAdapter.setDatabase(Database.ORACLE);
+//        jpaVendorAdapter.setDatabase(Database.SQL_SERVER);
         return jpaVendorAdapter;
     }
 	
