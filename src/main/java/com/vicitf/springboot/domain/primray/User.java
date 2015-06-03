@@ -5,12 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "t_user", schema = "dbo", catalog = "test")
-@Table(name = "t_user")
+@Table(name = "t_user", schema = "dbo", catalog = "test")
+//@Table(name = "t_user")
 public class User {
 	private Long id;
 	private String username;
@@ -25,9 +24,9 @@ public class User {
 	}
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator", sequenceName = "user_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+//	@SequenceGenerator(name = "generator", sequenceName = "user_seq")
 	@Column(name = "id", length = 11)
 	public Long getId() {
 		return id;

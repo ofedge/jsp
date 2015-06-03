@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 
 import com.vicitf.springboot.param.CommonParam;
+import com.vicitf.springboot.utils.CollectionUtils;
 
 /**
  * 我想要一个登陆过滤, 在stackoverflow看到有人说继承Filter, 之后有人评论, 
@@ -39,7 +40,8 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String uri = request.getRequestURI();
-		if (uri.endsWith(".js") || uri.endsWith(".css") || uri.endsWith("index.jsp") || uri.endsWith("login") || uri.endsWith("index")) {
+		System.out.println(uri);
+		if (CollectionUtils.containsSingle(uri, CommonParam.filterList)) {
 			chain.doFilter(req, resp);
 		} else {
 			HttpSession session = request.getSession();

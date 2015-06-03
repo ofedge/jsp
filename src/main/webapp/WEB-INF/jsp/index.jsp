@@ -13,7 +13,7 @@
 <body>
 	<fieldset>
 		<legend>login</legend>
-		<form action="/login">
+		<form action="/login" method="post">
 			<p>username: <input type="text" name="username", id="username" /></p>
 			<p>password: <input type="password", name="password", id="password" /></p>
 			<p><input type="submit" value="login" id="login" /></p>

@@ -2,9 +2,11 @@ package com.vicitf.springboot.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,6 +16,12 @@ import com.vicitf.springboot.service.UserService;
 
 @Controller
 public class UserController {
+	
+	@Value("${springboot.app.openingtime}")
+    private int openingTime;
+	@Value("${springboot.app.closingtime}")
+    private int closingTime;
+	
 	@Autowired
 	private UserService userService;
 	
@@ -30,6 +38,13 @@ public class UserController {
 	@RequestMapping("/main")
 	public String main(){
 		return "main";
+	}
+	
+	@RequestMapping("/outsideOfficeHour")
+	public String outsideOfficeHour(HttpServletRequest request){
+		request.setAttribute("openingTime", openingTime);
+		request.setAttribute("closingTime", closingTime);
+		return "outsideOfficeHour";
 	}
 	
 	@SuppressWarnings("unchecked")
