@@ -18,14 +18,19 @@ import com.vicitf.springboot.config.listener.StartupListener;
 public class Application extends SpringBootServletInitializer{ // 打包war文件需要继承SpringBootServletInitializer类
 	
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		// jar方式运行时候使用
+		SpringApplication app = new SpringApplication(Application.class);
+		app.setBanner(new MyBanner());
+		app.setShowBanner(false);
+		app.addListeners(new StartupListener());
+		app.run(args);
 	}
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		// tomcat运行会执行下面配置的条幅和监听, jar方式会运行main方法里设置的
 		application.banner(new MyBanner()); // 条幅
-		application.showBanner(true);
+		application.showBanner(false);
 		application.listeners(new StartupListener()); //监听
     	return application.sources(Application.class);
 	}
