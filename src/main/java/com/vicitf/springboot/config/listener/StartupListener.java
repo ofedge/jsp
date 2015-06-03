@@ -18,11 +18,7 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 		addFilterList();
 	}
 	
-	/**
-	 * 好像js和css不用添加进去也行啊..
-	 */
 	private void addFilterList() {
-		System.out.println("初始化过滤请求");
 		CommonParam.filterList.add(".js");
 		CommonParam.filterList.add(".css");
 		CommonParam.filterList.add("index.jsp");

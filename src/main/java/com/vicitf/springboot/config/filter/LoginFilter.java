@@ -40,7 +40,6 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String uri = request.getRequestURI();
-		System.out.println(uri);
 		if (CollectionUtils.containsSingle(uri, CommonParam.filterList)) {
 			chain.doFilter(req, resp);
 		} else {
