@@ -18,14 +18,20 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 		addFilterList();
 	}
 	
+	/**
+	 * 过滤url列表
+	 */
 	private void addFilterList() {
-		CommonParam.filterList.add(".js");
-		CommonParam.filterList.add(".css");
-		CommonParam.filterList.add("index.jsp");
-		CommonParam.filterList.add("/login");
-		CommonParam.filterList.add("/index");
-		CommonParam.filterList.add("/outsideOfficeHour");
-		CommonParam.filterList.add("outsideOfficeHour.jsp");
+		CommonParam.FILTER_LIST.add(".js");
+		CommonParam.FILTER_LIST.add(".css");
+		CommonParam.FILTER_LIST.add("/");
+		CommonParam.FILTER_LIST.add("/login");
+		CommonParam.FILTER_LIST.add("/signup");
+		CommonParam.FILTER_LIST.add("/signin");
+		CommonParam.FILTER_LIST.add("/outsideOfficeHour");
+		CommonParam.FILTER_LIST.add("signin.jsp");
+		CommonParam.FILTER_LIST.add("signup.jsp");
+		CommonParam.FILTER_LIST.add("outsideOfficeHour.jsp");
 	}
 
 }

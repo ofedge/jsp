@@ -7,7 +7,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
-import com.vicitf.springboot.domain.primray.User;
+import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +18,12 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void loginTest() {
-		User user = us.login("admin", "admin");
-		System.out.println(user.getId() + ", " + user.getUsername() + ", " + user.getPassword());
+		UserBean userBean = us.login("admin", "admin");
+		System.out.println(userBean.getId() + ", " + userBean.getUsername() + ", " + userBean.getAvatar());
+	}
+	
+	@Test
+	public void registerTest() {
+		System.out.println(us.register("guest", "guest"));
 	}
 }
