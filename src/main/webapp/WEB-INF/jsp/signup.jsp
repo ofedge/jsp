@@ -33,23 +33,26 @@
   </nav>
   <div class="container">
     <div class="jumbotron">
-      <form class="form-horizontal" action="/register" method="post">
+      <form class="form-horizontal" action="/user/register" method="post" id="signup">
         <div class="form-group">
           <label for="username" class="col-sm-1 control-label">username</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" id="username" name="username" placeholder="username" />
+            <input type="text" class="form-control" id="username" name="username" placeholder="username"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
         </div>
         <div class="form-group">
           <label for="password" class="col-sm-1 control-label">password</label>
           <div class="col-sm-5">
-            <input type="password" class="form-control" id="password" name="password" placeholder="password" />
+            <input type="password" class="form-control" id="password" name="password" placeholder="password"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
         </div>
         <div class="form-group">
           <label for="repassword" class="col-sm-1 control-label">repassword</label>
           <div class="col-sm-5">
-            <input type="password" class="form-control" id="repassword" placeholder="repassword" />
+            <input type="password" class="form-control" id="repassword" placeholder="repassword"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
         </div>
         <div class="form-group">

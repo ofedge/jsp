@@ -26,4 +26,9 @@ public class UserRepositoryTest {
 	public void registerTest() {
 		System.out.println(us.register("guest", "guest"));
 	}
+	
+	@Test
+	public void existsByUsername() {
+		System.out.println(us.existsByUsername("admin"));
+	}
 }

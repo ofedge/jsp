@@ -26,6 +26,7 @@
 查询结果返回自定义bean, 需要调用query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(Bean.class)), 挺好, hibernate还要自己去实现这个方法
 1. filter和interceptor相互拦截的有点恶心, 不过还好可以了, 指定时间段内不能访问做成功了, 顺便整理一下类, 接下来研究spring mvc吧
 1. 做spring mvc文件上传来着, 又要添加注册功能, 还添加了bootstrap, 突然忙不过来了
+1. 未注册前的所有动作都要加到filter过滤列表里, 比如检查用户名时候, 会报302, 然后就重定向到首页了, 当然ajax方法是不会在当前页跳转的
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

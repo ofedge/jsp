@@ -33,7 +33,7 @@
   </nav>
   <div class="container">
     <div class="jumbotron">
-      <form class="form-horizontal" action="/login" method="post">
+      <form class="form-horizontal" action="/user/login" method="post">
         <div class="form-group">
           <label for="username" class="col-sm-1 control-label">username</label>
           <div class="col-sm-5">

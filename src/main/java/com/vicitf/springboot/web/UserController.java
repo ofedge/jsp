@@ -2,12 +2,13 @@ package com.vicitf.springboot.web;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.param.CommonParam;
@@ -15,21 +16,11 @@ import com.vicitf.springboot.service.UserService;
 import com.vicitf.springboot.utils.StringUtils;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping("register")
-	public String register(String username, String password, HttpServletRequest request){
-		if(StringUtils.isNotNull(username, password)){
-			if(userService.register(username, password)){
-				return "redirect:/signin";
-			}
-		}
-		request.setAttribute("msg", "Error, please try again!");
-		return "redirect:/signup";
-	}
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/login")
@@ -53,9 +44,29 @@ public class UserController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		String loginUser = (String) session.getAttribute("loginUser");
+		UserBean userBean = (UserBean) session.getAttribute(CommonParam.SESSION_USER);
 		session.invalidate();
-		System.out.println("-----" + loginUser + "下线了------");
+		System.out.println("-----" + userBean.getUsername() + "下线了------");
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/existsUser")
+	@ResponseBody
+	public String existsUser(String username){
+		if(StringUtils.isNotNull(username)) {
+			if(userService.existsByUsername(username))
+				return "Y";
+		}
+		return "N";
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(String username, String password){
+		if(StringUtils.isNotNull(username, password)){
+			if(userService.register(username, password)){
+				return "redirect:/";
+			}
+		}
+		return "/signup";
 	}
 }

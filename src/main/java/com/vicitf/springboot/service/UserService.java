@@ -8,4 +8,5 @@ public interface UserService {
 	
 	boolean register(String username, String password);
 
+	boolean existsByUsername(String username);
 }

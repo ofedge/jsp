@@ -28,6 +28,8 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 		CommonParam.FILTER_LIST.add("/login");
 		CommonParam.FILTER_LIST.add("/signup");
 		CommonParam.FILTER_LIST.add("/signin");
+		CommonParam.FILTER_LIST.add("/existsUser");
+		CommonParam.FILTER_LIST.add("/register");
 		CommonParam.FILTER_LIST.add("/outsideOfficeHour");
 		CommonParam.FILTER_LIST.add("signin.jsp");
 		CommonParam.FILTER_LIST.add("signup.jsp");
