@@ -2,6 +2,7 @@ package com.vicitf.springboot.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vicitf.springboot.bean.UserBean;
+import com.vicitf.springboot.domain.primray.User;
 import com.vicitf.springboot.param.CommonParam;
 import com.vicitf.springboot.service.UserService;
 import com.vicitf.springboot.utils.StringUtils;
@@ -61,9 +63,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(String username, String password){
+	public String register(String username, String password, HttpServletRequest request){
 		if(StringUtils.isNotNull(username, password)){
-			if(userService.register(username, password)){
+			User user = new User(username, password);
+			String loginAddress = request.getRemoteAddr();
+			user.setLoginAddress(loginAddress);
+			if(userService.register(user)){
 				return "redirect:/";
 			}
 		}

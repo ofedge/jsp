@@ -24,6 +24,11 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 	private void addFilterList() {
 		CommonParam.FILTER_LIST.add(".js");
 		CommonParam.FILTER_LIST.add(".css");
+		CommonParam.FILTER_LIST.add(".eot");
+		CommonParam.FILTER_LIST.add(".svg");
+		CommonParam.FILTER_LIST.add(".ttf");
+		CommonParam.FILTER_LIST.add(".woff");
+		CommonParam.FILTER_LIST.add(".woff2");
 		CommonParam.FILTER_LIST.add("/");
 		CommonParam.FILTER_LIST.add("/login");
 		CommonParam.FILTER_LIST.add("/signup");

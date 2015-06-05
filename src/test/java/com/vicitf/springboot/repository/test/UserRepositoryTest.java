@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.bean.UserBean;
+import com.vicitf.springboot.domain.primray.User;
 import com.vicitf.springboot.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +25,8 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void registerTest() {
-		System.out.println(us.register("guest", "guest"));
+		User user = new User("guest", "guest");
+		System.out.println(us.register(user));
 	}
 	
 	@Test

@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean register(String username, String password) {
-		User user = new User(username, password);
+	public boolean register(User user) {
 		user.setAvatar(CommonParam.DEFAULT_AVATAR);
 		userRepository.save(user);
 		return user.getId() != null;

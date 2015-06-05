@@ -14,7 +14,11 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
+	private String realname;
+	private String gender;
+	private String email;
 	private String avatar;
+	private String loginAddress;
 
 	public User() {
 	}
@@ -55,6 +59,33 @@ public class User {
 		this.password = password;
 	}
 	
+	@Column(name = "realname", length = 50)
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	@Column(name = "gender", length = 10)
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	@Column(name = "email", length = 50)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Column(name = "avatar", length = 50)
 	public String getAvatar() {
 		return avatar;
@@ -64,4 +95,13 @@ public class User {
 		this.avatar = avatar;
 	}
 
+	@Column(name = "login_address", length = 20)
+	public String getLoginAddress() {
+		return loginAddress;
+	}
+	
+	public void setLoginAddress(String loginAddress) {
+		this.loginAddress = loginAddress;
+	}
+	
 }

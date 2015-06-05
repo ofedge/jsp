@@ -34,16 +34,18 @@
   <div class="container">
     <div class="jumbotron">
       <form class="form-horizontal" action="/user/login" method="post">
-        <div class="form-group">
+        <div class="form-group has-feedback">
           <label for="username" class="col-sm-1 control-label">username</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" id="username" name="username" placeholder="username" />
+            <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group has-feedback">
           <label for="password" class="col-sm-1 control-label">password</label>
           <div class="col-sm-5">
             <input type="password" class="form-control" id="password" name="password" placeholder="password" />
+            <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
         <div class="form-group">
