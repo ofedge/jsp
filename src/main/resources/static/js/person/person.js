@@ -13,12 +13,16 @@ var bindPersonBtn = function() {
 
 var person = {
 		transformPageData: function(dom, data) {
-			var info = '';
+			var sb = new StringBuffer();
 			var content = data.content;
 			for (var i = 0; i < content.length; i++) {
-				info += '<p>' + (i + 1) + '. name: ' + content[i].name + ', email: ' + content[i].email + ', age: ' + content[i].age + ', gender: ' + content[i].gender + '</p>';
+				sb.append('<tr><td>').append(i + 1).append('</td>');
+				sb.append('<td>').append(content[i].name).append('</td>');
+				sb.append('<td>').append(content[i].email).append('</td>');
+				sb.append('<td>').append(content[i].age).append('</td>');
+				sb.append('<td>').append(content[i].gender).append('</td></tr>');
 			}
-			$(dom).html(info);
+			$(dom).html(sb.toString());
 			if(data.first == true) $('#person .previous').attr('disabled', 'disabled');
 			else $('#person .previous').removeAttr('disabled');
 			if(data.last == true) $('#person .next').attr('disabled', 'disabled');
@@ -27,11 +31,15 @@ var person = {
 			$('#person .totalPages').html(data.totalPages);
 		},
 		transformData: function(dom, data) {
-			var info = '';
+			var sb = new StringBuffer();
 			for (var i = 0; i < data.length; i++) {
-				info += '<p>' + (i + 1) + '. name: ' + data[i].name + ', email: ' + data[i].email + ', age: ' + data[i].age + ', gender: ' + data[i].gender + '</p>';
+				sb.append('<tr><td>').append(i + 1).append('</td>');
+				sb.append('<td>').append(data[i].name).append('</td>');
+				sb.append('<td>').append(data[i].email).append('</td>');
+				sb.append('<td>').append(data[i].age).append('</td>');
+				sb.append('<td>').append(data[i].gender).append('</td></tr>');
 			}
-			$(dom).html(info);
+			$(dom).html(sb.toString());
 		},
 		url: {
 			findAll: '/person/findAll',
@@ -70,7 +78,7 @@ var person = {
 				data: pageRequest,
 				dataType: 'json',
 				success: function(data) {
-					person.transformPageData('#person #person_info', data);
+					person.transformPageData('#person #person_info tbody', data);
 				}
 			});
 		},
@@ -124,7 +132,7 @@ var person = {
 					type: 'get',
 					dataType: 'json',
 					success: function(data) {
-						person.transformData('#person #name_area', data);
+						person.transformData('#person #name_area tbody', data);
 					},
 					complete: function() {
 						person.clearQueryParam();
@@ -141,7 +149,7 @@ var person = {
 					type: 'get',
 					dataType: 'json',
 					success: function(data) {
-						person.transformData('#person #email_area', data);
+						person.transformData('#person #email_area tbody', data);
 					},
 					complete: function() {
 						person.clearQueryParam();

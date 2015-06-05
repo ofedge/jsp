@@ -48,21 +48,51 @@
   <div class="container">
     <div id="country">
       <fieldset>
-        <legend>Country</legend>
-        <fieldset>
-          <legend>Countries: </legend>
-          <div id="country_info">&nbsp;</div>
-          <div class="pagination">
-            <input type="button" class="previous" value="previous"  />
-            <span class="number"></span>/<span class="totalPages"></span>
-            <input type="button" class="next" value="next" />
+        <legend>Countries: </legend>
+        <div id="country_info">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>region</th>
+                <th>code</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <a class="previous btn btn-default">previous</a>
+          <span class="number"></span>/<span class="totalPages"></span>
+          <a class="next btn btn-default">next</a>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Search</legend>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="country_key" class="control-label col-sm-3">input country name to search person:</label>
+            <div class="col-sm-3">
+              <input type="text" id="country_key" class="form-control col-sm-3" placeholder="country name" />
+            </div>
+            <a class="btn btn-default col-sm-1" id="country_search">search</a>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>Search</legend>
-          <p>country name: <input id="country_key" /><input type="button" value="search" id="country_search"></p>
-          <p id="country_area">&nbsp;</p>
-        </fieldset>
+          <div id="country_area">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>age</th>
+                  <th>gender</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </form>
       </fieldset>
     </div>
   </div>

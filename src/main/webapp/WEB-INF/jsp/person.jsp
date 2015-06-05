@@ -47,41 +47,101 @@
   <div class="container">
     <div id="person">
       <fieldset>
-        <legend>Person</legend>
-        <fieldset>
-          <legend>All Person:</legend>
-          <div id="person_info">&nbsp;</div>
-          <div class="pagination">
-            <input type="button" class="previous" value="previous"  />
-            <span class="number"></span>/<span class="totalPages"></span>
-            <input type="button" class="next" value="next" />
+        <legend>All Person:</legend>
+        <div id="person_info">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>email</th>
+                <th>age</th>
+                <th>gender</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <a class="previous btn btn-default">previous</a>
+          <span class="number"></span>/<span class="totalPages"></span>
+          <a class="next btn btn-default">next</a>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Add Person</legend>
+        <form class="form-inline" id="add_person">
+          <div class="form-group">
+            <label for="name" class="control-label">name:</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="name" />
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>add person</legend>
-          <form id="add_person">
-            <label for="name">name: </label>
-            <input type="text" name="name" id="name" />
-            <label for="email">email: </label>
-            <input type="email" name="email" id="email" />
-            <label for="age">age: </label>
-            <input type="number" name="age" id="age" min="1" max="100" value="20" />
-            <label for="gender">gender: </label>
-            <select name="gender" id="gender">
+          <div class="form-group">
+            <label for="email" class="control-label">email:</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="email" />
+          </div>
+          <div class="form-group">
+            <label for="age">age:</label>
+            <input type="number" class="form-control" name="age" id="age" min="1" max="100" value="20" />
+          </div>
+          <div class="form-group">
+            <label for="gender" class="control-label">gender:</label>
+            <select name="gender" id="gender" class="form-control">
               <option value="male">male</option>
               <option value="female">female</option>
             </select>
-            <input type="submit" value="submit" />
-          </form>
-          <p id="form_area">&nbsp;</p>
-        </fieldset>
-        <fieldset>
-          <legend>Search</legend>
-          <p>name: <input id="name_key" /><input type="button" value="search" id="name_search"></p>
-          <p id="name_area">&nbsp;</p>
-          <p>email: <input id="email_key" /><input type="button" value="search" id="email_search"></p>
-          <p id="email_area">&nbsp;</p>
-        </fieldset>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Add</button>
+          </div>
+        </form>
+      </fieldset>
+      <fieldset>
+        <legend>Search</legend>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="name_key" class="control-label col-sm-2">input name to search:</label>
+            <div class="col-sm-3">
+              <input type="text" id="name_key" class="form-control col-sm-3" placeholder="name" />
+            </div>
+            <a class="btn btn-default col-sm-1" id="name_search">search</a>
+          </div>
+          <div id="name_area">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>age</th>
+                  <th>gender</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <hr />
+          <div class="form-group">
+            <label for="email_key" class="control-label col-sm-2">input email to search:</label>
+            <div class="col-sm-3">
+              <input type="text" id="email_key" class="form-control col-sm-3" />
+            </div>
+            <a class="btn btn-default col-sm-1" id="email_search">search</a>
+          </div>
+          <div id="email_area">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>age</th>
+                  <th>gender</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </form>
       </fieldset>
     </div>
   </div>
