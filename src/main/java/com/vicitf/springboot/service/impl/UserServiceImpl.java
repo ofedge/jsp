@@ -22,6 +22,9 @@ public class UserServiceImpl implements UserService {
 			userBean = new UserBean();
 			userBean.setId(user.getId());
 			userBean.setUsername(user.getUsername());
+			userBean.setRealname(user.getRealname());
+			userBean.setGender(user.getGender());
+			userBean.setEmail(user.getEmail());
 			userBean.setAvatar(user.getAvatar());
 		}
 		return userBean;

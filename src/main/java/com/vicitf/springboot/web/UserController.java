@@ -54,7 +54,7 @@ public class UserController {
 	
 	@RequestMapping("/existsUser")
 	@ResponseBody
-	public String existsUser(String username){
+	public String existsUser(String username) {
 		if(StringUtils.isNotNull(username)) {
 			if(userService.existsByUsername(username))
 				return "Y";

@@ -7,9 +7,9 @@
 <title>spring boot demo</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="/css/general.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/general.js"></script>
 <script src="js/user/signin.js"></script>
 </head>
 <body>

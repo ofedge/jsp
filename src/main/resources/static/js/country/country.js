@@ -1,6 +1,13 @@
 $(function(){
-	$('#country').hide();
+	country.findAll(country.pageRequest);
+	bindCountryBtn();
 });
+
+var bindCountryBtn = function() {
+	country.previousBtn();
+	country.nextBtn();
+	country.countrySearchBtn();
+}
 
 var country = {
 		transformPageData: function(dom, data) {

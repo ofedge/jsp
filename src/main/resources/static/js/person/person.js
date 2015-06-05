@@ -1,6 +1,16 @@
 $(function(){
+	bindPersonBtn();
 	person.findAll(person.pageRequest);
 });
+
+var bindPersonBtn = function() {
+	person.addPersonBtn();
+	person.previousBtn();
+	person.nextBtn();
+	person.nameSearchBtn();
+	person.emailSearchBtn();
+}
+
 var person = {
 		transformPageData: function(dom, data) {
 			var info = '';
