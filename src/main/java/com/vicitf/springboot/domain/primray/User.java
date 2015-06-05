@@ -14,6 +14,7 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
+	private String avatar;
 
 	public User() {
 	}
@@ -52,6 +53,15 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Column(name = "avatar", length = 50)
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }

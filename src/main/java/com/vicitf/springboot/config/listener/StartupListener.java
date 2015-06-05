@@ -19,17 +19,21 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 	}
 	
 	/**
-	 * 好像js和css不用添加进去也行啊..
+	 * 过滤url列表
 	 */
 	private void addFilterList() {
-		System.out.println("初始化过滤请求");
-		CommonParam.filterList.add(".js");
-		CommonParam.filterList.add(".css");
-		CommonParam.filterList.add("index.jsp");
-		CommonParam.filterList.add("/login");
-		CommonParam.filterList.add("/index");
-		CommonParam.filterList.add("/outsideOfficeHour");
-		CommonParam.filterList.add("outsideOfficeHour.jsp");
+		CommonParam.FILTER_LIST.add(".js");
+		CommonParam.FILTER_LIST.add(".css");
+		CommonParam.FILTER_LIST.add("/");
+		CommonParam.FILTER_LIST.add("/login");
+		CommonParam.FILTER_LIST.add("/signup");
+		CommonParam.FILTER_LIST.add("/signin");
+		CommonParam.FILTER_LIST.add("/existsUser");
+		CommonParam.FILTER_LIST.add("/register");
+		CommonParam.FILTER_LIST.add("/outsideOfficeHour");
+		CommonParam.FILTER_LIST.add("signin.jsp");
+		CommonParam.FILTER_LIST.add("signup.jsp");
+		CommonParam.FILTER_LIST.add("outsideOfficeHour.jsp");
 	}
 
 }

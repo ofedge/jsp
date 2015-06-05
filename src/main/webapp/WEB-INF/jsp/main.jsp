@@ -13,8 +13,8 @@
 <script src="/js/country.js"></script>
 </head>
 <body>
-	<c:if test="${!empty loginUser }">
-	  <p>welcome, ${loginUser }. <a href="/logout">logout</a></p>
+	<c:if test="${!empty sessionUser.username }">
+	  <p>welcome, ${sessionUser.username }. <a href="/user/logout">logout</a></p>
 	</c:if>
 	<div id="switch_btn">
 	  <input type="button" id="show_person" value="person" />

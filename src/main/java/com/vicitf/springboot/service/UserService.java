@@ -1,9 +1,12 @@
 package com.vicitf.springboot.service;
 
-import com.vicitf.springboot.domain.primray.User;
+import com.vicitf.springboot.bean.UserBean;
 
 public interface UserService {
 
-	User login(String username, String password);
+	UserBean login(String username, String password);
+	
+	boolean register(String username, String password);
 
+	boolean existsByUsername(String username);
 }

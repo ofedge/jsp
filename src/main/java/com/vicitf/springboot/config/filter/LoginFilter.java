@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
+import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.param.CommonParam;
 import com.vicitf.springboot.utils.CollectionUtils;
 
@@ -40,18 +41,17 @@ public class LoginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		String uri = request.getRequestURI();
-		System.out.println(uri);
-		if (CollectionUtils.containsSingle(uri, CommonParam.filterList)) {
+		if (CollectionUtils.containsSingle(uri, CommonParam.FILTER_LIST)) {
 			chain.doFilter(req, resp);
 		} else {
 			HttpSession session = request.getSession();
-			String loginUser = (String) session.getAttribute("loginUser");
-			if (loginUser == null) {
-				response.sendRedirect("index");
+			UserBean sessionUser = (UserBean) session.getAttribute(CommonParam.SESSION_USER);
+			if (sessionUser == null) {
+				response.sendRedirect("/");
 			} else {
 				Map<String, String> onlineUsers = (Map<String, String>) session.getServletContext().getAttribute(CommonParam.ONLINE_USERS);
-				if (session.getId() != onlineUsers.get(loginUser)) {
-					response.sendRedirect("index");
+				if (session.getId() != onlineUsers.get(sessionUser.getId())) {
+					response.sendRedirect("/");
 				} else {
 					chain.doFilter(req, resp);
 				}
