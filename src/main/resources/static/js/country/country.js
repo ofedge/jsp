@@ -1,15 +1,25 @@
 $(function(){
-	$('#country').hide();
+	country.findAll(country.pageRequest);
+	bindCountryBtn();
 });
+
+var bindCountryBtn = function() {
+	country.previousBtn();
+	country.nextBtn();
+	country.countrySearchBtn();
+}
 
 var country = {
 		transformPageData: function(dom, data) {
-			var info = '';
+			var sb = new StringBuffer();
 			var content = data.content;
 			for (var i = 0; i < content.length; i++) {
-				info += '<p>' + (i + 1) + '. name: ' + content[i].name + ', region: ' + content[i].region + ', code: ' + content[i].code + '</p>';
+				sb.append('<tr><td>').append(i + 1).append('</td>');
+				sb.append('<td>').append(content[i].name).append('</td>');
+				sb.append('<td>').append(content[i].region).append('</td>');
+				sb.append('<td>').append(content[i].code).append('</td></tr>');
 			}
-			$(dom).html(info);
+			$(dom).html(sb.toString());
 			if(data.first == true) $('#country .previous').attr('disabled', 'disabled');
 			else $('#country .previous').removeAttr('disabled');
 			if(data.last == true) $('#country .next').attr('disabled', 'disabled');
@@ -18,9 +28,12 @@ var country = {
 			$('#country .totalPages').html(data.totalPages);
 		},
 		transformData: function(dom, data) {
-			var info = '';
+			var sb = new StringBuffer();
 			for (var i = 0; i < data.length; i++) {
-				info += '<p>' + (i + 1) + '. name: ' + data[i].name + ', region: ' + data[i].region + ', code: ' + data[i].code + '</p>';
+				sb.append('<tr><td>').append(i + 1).append('</td>');
+				sb.append('<td>').append(data[i].name).append('</td>');
+				sb.append('<td>').append(data[i].region).append('</td>');
+				sb.append('<td>').append(data[i].code).append('</td></tr>');
 			}
 			$(dom).html(info);
 		},
@@ -39,7 +52,7 @@ var country = {
 				data: pageRequest,
 				dataType: 'json',
 				success: function(data) {
-					country.transformPageData('#country #country_info', data);
+					country.transformPageData('#country #country_info tbody', data);
 				}
 			});
 		},
@@ -63,7 +76,7 @@ var country = {
 					type: 'get',
 					dataType: 'json',
 					success: function(data) {
-						person.transformData('#country #country_area', data);
+						person.transformData('#country #country_area tbody', data);
 					}
 				});
 			});

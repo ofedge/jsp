@@ -22,14 +22,16 @@ public class UserServiceImpl implements UserService {
 			userBean = new UserBean();
 			userBean.setId(user.getId());
 			userBean.setUsername(user.getUsername());
+			userBean.setRealname(user.getRealname());
+			userBean.setGender(user.getGender());
+			userBean.setEmail(user.getEmail());
 			userBean.setAvatar(user.getAvatar());
 		}
 		return userBean;
 	}
 
 	@Override
-	public boolean register(String username, String password) {
-		User user = new User(username, password);
+	public boolean register(User user) {
 		user.setAvatar(CommonParam.DEFAULT_AVATAR);
 		userRepository.save(user);
 		return user.getId() != null;

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome, ${sessionUser.username }</title>
+<title>My Profile</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
@@ -44,10 +43,9 @@
     </div>
   </nav>
   <div class="container">
-  	<div class="jumbotron">
-  	  <h1>Welcome, ${sessionUser.username }</h1>
-  	  <p>Life is a climb, but the view is great.</p>
-  	</div>
+    <div class="jumbotron">
+      <h1>under maintaining</h1>
+    </div>
   </div>
 </body>
 </html>

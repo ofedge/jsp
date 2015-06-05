@@ -18,12 +18,12 @@ import com.vicitf.springboot.service.CountryService;
 public class CountryController {
 	@Autowired
 	private CountryService countryService;
-	
+
 	@RequestMapping("/findAll")
 	public Page<Country> findAll(int number, int size) {
 		return countryService.findAll(new PageRequest(number, size));
 	}
-	
+
 	@RequestMapping("/findByCountryname/{countryName}")
 	public List<Person> findPersonsInCountry(@PathVariable String countryName) {
 		return countryService.findPersonsInCountry(countryName);

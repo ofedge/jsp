@@ -7,9 +7,9 @@
 <title>Sing up</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="/css/general.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/general.js"></script>
 <script src="js/user/signup.js"></script>
 </head>
 <body>
@@ -34,25 +34,28 @@
   <div class="container">
     <div class="jumbotron">
       <form class="form-horizontal" action="/user/register" method="post" id="signup">
-        <div class="form-group">
+        <div class="form-group has-feedback">
           <label for="username" class="col-sm-1 control-label">username</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" id="username" name="username" placeholder="username"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" />
+            <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group has-feedback">
           <label for="password" class="col-sm-1 control-label">password</label>
           <div class="col-sm-5">
             <input type="password" class="form-control" id="password" name="password" placeholder="password"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" />
+            <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group has-feedback">
           <label for="repassword" class="col-sm-1 control-label">repassword</label>
           <div class="col-sm-5">
             <input type="password" class="form-control" id="repassword" placeholder="repassword"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" />
+            <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
         <div class="form-group">

@@ -14,12 +14,6 @@ var signup = {
 			repassword: false
 		},
 		btn: function(){
-			//nav
-			$('#spring-boot-demo-navbar-collpase ul li').on('mouseover', function(){
-				$(this).addClass("active");
-			}).on('mouseout', function(){
-				$(this).removeClass("active");
-			});
 			// username
 			$('#username').on('change', function(){
 				var username = $(this).val();
