@@ -29,15 +29,22 @@ public class UserController {
 	public String login(String username, String password, HttpSession session) {
 		UserBean userBean = userService.login(username, password);
 		if (userBean != null) {
-			session.setAttribute(CommonParam.SESSION_USER, userBean);
 			Map<Long, String> onlineUsers = (Map<Long, String>) session.getServletContext().getAttribute(CommonParam.ONLINE_USERS);
-			if (onlineUsers.containsKey(userBean.getId())) {
-				System.out.println("-----" + userBean.getUsername() + ": " + onlineUsers.get(userBean.getId()) + " 被踢下线-----");
-				onlineUsers.remove(userBean.getId());
+			for (Long sessionUserId : onlineUsers.keySet()) {
+				if (sessionUserId.equals(userBean.getId())) {
+					System.out.println("-----" + userBean.getUsername() + ": " + onlineUsers.get(userBean.getId()) + " 在其他地方登陆, 原登陆被踢下线-----");
+					onlineUsers.remove(sessionUserId);
+				}
+				if (onlineUsers.get(sessionUserId).equals(session.getId())) {
+					UserBean oldSessionUser = (UserBean) session.getAttribute(CommonParam.SESSION_USER);
+					System.out.println("-----由于 " + userBean.getUsername() + " 在本地登陆, " + oldSessionUser.getUsername() + ": " + session.getId() + " 已被迫下线-----");
+					onlineUsers.remove(sessionUserId);
+				}
 			}
 			onlineUsers.put(userBean.getId(), session.getId());
-			System.out.println("-----" + userBean.getUsername() + "上线了-----");
-			System.out.println("-----当前在线: " + onlineUsers.size() + "人-----");
+			session.setAttribute(CommonParam.SESSION_USER, userBean);
+			System.out.println("-----" + userBean.getUsername() + ": " + session.getId() + " 上线了-----");
+			System.out.println("-----当前在线: " + onlineUsers.size() + " 人-----");
 			return "redirect:/main";
 		} else {
 			return "redirect:/";

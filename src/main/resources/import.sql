@@ -20,14 +20,14 @@ create sequence user_seq;
 create table t_user(
   id number(11) primary key,
   username varchar2(20) not null unique,
-  password varchar2(20)
+  password varchar2(20),
   realname varchar2(50),
   gender varchar2(10),
   email varchar2(50),
   avatar varchar2(50),
   login_address varchar2(20)
 );
-insert into t_user(username, password, avatar) values ('admin','admin','default.png');
+insert into t_user(id, username, password, avatar) values (user_seq.nextval, 'admin','admin','default.png');
 
 --MySQL
 DROP TABLE IF EXISTS `t_person`;
