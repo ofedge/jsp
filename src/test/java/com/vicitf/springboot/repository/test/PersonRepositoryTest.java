@@ -17,6 +17,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
+import com.vicitf.springboot.param.PageParam;
+import com.vicitf.springboot.param.PageVo;
+import com.vicitf.springboot.param.PropertyVo;
+import com.vicitf.springboot.param.PropertyVo.Condition;
+import com.vicitf.springboot.param.SortVo;
+import com.vicitf.springboot.param.SortVo.OrderVo;
 import com.vicitf.springboot.service.PersonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -77,5 +83,18 @@ public class PersonRepositoryTest {
 		for (PersonBean pb : list) {
 			System.out.println(pb);
 		}
+	}
+	
+	@Test
+	public void findAllPerson() {
+		List<PropertyVo> param = new ArrayList<PropertyVo>();
+		param.add(new PropertyVo("gender", "male", Condition.EQUAL));
+		param.add(new PropertyVo("age", 20, Condition.MORE_OR_EQUAL));
+		List<OrderVo> orders = new ArrayList<OrderVo>();
+		orders.add(new OrderVo("age"));
+		SortVo sort = new SortVo(orders);
+		PageParam pageParam = new PageParam(0, 10, param, sort);
+		PageVo<PersonBean> vo = ps.findAllPerson(pageParam);
+		System.out.println(vo);
 	}
 }

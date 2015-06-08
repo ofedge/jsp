@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.service.PersonService;
 
@@ -51,5 +52,11 @@ public class PersonController {
 	@RequestMapping("/findByEmail")
 	public List<Person> findByEmail(String email) {
 		return personService.findByEmail(email);
+	}
+	
+	@RequestMapping("/findAllPerson")
+	public List<PersonBean> findAllPerson(){
+		// TODO
+		return null;
 	}
 }

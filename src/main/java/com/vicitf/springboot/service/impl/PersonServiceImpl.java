@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
+import com.vicitf.springboot.param.PageParam;
+import com.vicitf.springboot.param.PageVo;
 import com.vicitf.springboot.repository.secondary.PersonRepository;
 import com.vicitf.springboot.service.PersonService;
 
@@ -50,5 +52,10 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public List<PersonBean> findAllPersonsWithCountry() {
 		return personRepository.findAllPersonsWithCountry();
+	}
+
+	@Override
+	public PageVo<PersonBean> findAllPerson(PageParam pageParam) {
+		return personRepository.findAllPerson(pageParam);
 	}
 }
