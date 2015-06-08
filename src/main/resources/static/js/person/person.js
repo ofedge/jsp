@@ -127,27 +127,27 @@ var person = {
 			$('#search_person').on('click', function(){
 				var paramArray = new Array();
 				if($('#name_key').val() != ''){
-					paramArray.push('name');
+					paramArray.push(TablePrefix.person + 'name');
 					paramArray.push(Condition.like);
 					paramArray.push('%' + $('#name_key').val() + '%');
 				}
 				if($('#email_key').val() != ''){
-					paramArray.push('email');
+					paramArray.push(TablePrefix.person + 'email');
 					paramArray.push(Condition.like);
 					paramArray.push('%' + $('#email_key').val() + '%');
 				}
 				if($('#age_min').val() != ''){
-					paramArray.push('age');
+					paramArray.push(TablePrefix.person + 'age');
 					paramArray.push(Condition.moreOrEqual);
 					paramArray.push($('#age_min').val());
 				}
 				if($('#age_max').val() != ''){
-					paramArray.push('age');
+					paramArray.push(TablePrefix.person + 'age');
 					paramArray.push(Condition.lessOrEqual);
 					paramArray.push($('#age_max').val());
 				}
 				if($('#gender_key').val() != 'all'){
-					paramArray.push('gender');
+					paramArray.push(TablePrefix.person + 'gender');
 					paramArray.push(Condition.equal);
 					paramArray.push($('#gender_key').val());
 				}

@@ -22,6 +22,11 @@ var Condition = {
 		lessOrEqual: '<='
 }
 
+var TablePrefix = {
+		person: 'p.',
+		country: 'c.',
+}
+
 var StringBuffer = function(str) {
 	if (str != undefined)
 		this.value = new Array(str);
