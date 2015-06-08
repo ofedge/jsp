@@ -8,6 +8,7 @@
 <title>person</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="/css/person/person.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/general.js"></script>
@@ -48,6 +49,35 @@
     <div id="person">
       <fieldset>
         <legend>All Person:</legend>
+        <div id="person_search" class="form-inline">
+          <div class="form-group">
+            <label for="name_key" class="control-label">name:</label>
+            <input type="text" class="form-control" id="name_key" placeholder="name" />
+          </div>
+          <div class="form-group">
+            <label for="email_key" class="control-label">email:</label>
+            <input type="text" class="form-control" id="email_key" placeholder="email" />
+          </div>
+          <div class="form-group">
+            <label for="age_min" class="control-label">min age</label>
+            <input type="number" class="form-control" id="age_min" min="0" max="100" placeholder="min age" />
+          </div>
+          <div class="form-group">
+            <label for="age_max" class="control-label">max age</label>
+            <input type="number" class="form-control" id="age_max" min="0" max="100" placeholder="max age" />
+          </div>
+          <div class="form-group">
+            <label for="gender_key" class="control-label">gender:</label>
+            <select class="form-control" id="gender_key">
+              <option value="all">All</option>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-default" id="search_person">Search</a>
+          </div>
+        </div>
         <div id="person_info">
           <table class="table">
             <thead>
@@ -57,6 +87,7 @@
                 <th>email</th>
                 <th>age</th>
                 <th>gender</th>
+                <th>country</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -92,54 +123,6 @@
           </div>
           <div class="form-group">
             <button class="btn btn-primary" type="submit">Add</button>
-          </div>
-        </form>
-      </fieldset>
-      <fieldset>
-        <legend>Search</legend>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="name_key" class="control-label col-sm-2">input name to search:</label>
-            <div class="col-sm-3">
-              <input type="text" id="name_key" class="form-control col-sm-3" placeholder="name" />
-            </div>
-            <a class="btn btn-default col-sm-1" id="name_search">search</a>
-          </div>
-          <div id="name_area">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                  <th>age</th>
-                  <th>gender</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <hr />
-          <div class="form-group">
-            <label for="email_key" class="control-label col-sm-2">input email to search:</label>
-            <div class="col-sm-3">
-              <input type="text" id="email_key" class="form-control col-sm-3" />
-            </div>
-            <a class="btn btn-default col-sm-1" id="email_search">search</a>
-          </div>
-          <div id="email_area">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                  <th>age</th>
-                  <th>gender</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
           </div>
         </form>
       </fieldset>

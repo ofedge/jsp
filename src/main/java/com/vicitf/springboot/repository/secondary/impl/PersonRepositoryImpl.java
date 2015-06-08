@@ -116,6 +116,7 @@ public class PersonRepositoryImpl {
 		vo.setNumberOfElements(content.size());
 		vo.setFirst(pageParam.getPage() == 0);
 		long totalPage = totalElements % pageParam.getNums() == 0 ? totalElements / pageParam.getNums() : totalElements / pageParam.getNums() + 1;
+		vo.setLast(pageParam.getPage() + 1 == totalPage);
 		vo.setTotalPages(Integer.valueOf(String.valueOf(totalPage)));
 		return vo;
 	}

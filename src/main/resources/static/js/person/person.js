@@ -7,8 +7,7 @@ var bindPersonBtn = function() {
 	person.addPersonBtn();
 	person.previousBtn();
 	person.nextBtn();
-	person.nameSearchBtn();
-	person.emailSearchBtn();
+	person.searchBtn();
 }
 
 var person = {
@@ -20,7 +19,8 @@ var person = {
 				sb.append('<td>').append(content[i].name).append('</td>');
 				sb.append('<td>').append(content[i].email).append('</td>');
 				sb.append('<td>').append(content[i].age).append('</td>');
-				sb.append('<td>').append(content[i].gender).append('</td></tr>');
+				sb.append('<td>').append(content[i].gender).append('</td>');
+				sb.append('<td>').append(content[i].country).append('</td></tr>');
 			}
 			$(dom).html(sb.toString());
 			if(data.first == true) $('#person .previous').attr('disabled', 'disabled');
@@ -42,14 +42,14 @@ var person = {
 			$(dom).html(sb.toString());
 		},
 		url: {
-			findAll: '/person/findAll',
+			findAllPerson: '/person/findAllPerson',
 			save: '/person/save',
-			findByName: '/person/findByName',
-			findByEmail: '/person/findByEmail'
 		},
 		pageRequest: {
 			number: 0,
-			size: 10
+			size: 10,
+			property: '',
+			order: ''
 		},
 		person: {
 			name: '',
@@ -73,7 +73,7 @@ var person = {
 		},
 		findAll: function(pageRequest) {
 			$.ajax({
-				url: person.url.findAll,
+				url: person.url.findAllPerson,
 				type: 'get',
 				data: pageRequest,
 				dataType: 'json',
@@ -123,38 +123,36 @@ var person = {
 				person.findAll(person.pageRequest);
 			});
 		},
-		nameSearchBtn: function() {
-			$('#person #name_search').on('click', function(){
-				person.queryParam.name = $('#person #name_key').val();
-				$.ajax({
-					url: person.url.findByName,
-					data: person.queryParam,
-					type: 'get',
-					dataType: 'json',
-					success: function(data) {
-						person.transformData('#person #name_area tbody', data);
-					},
-					complete: function() {
-						person.clearQueryParam();
-					}
-				});
-			});
-		},
-		emailSearchBtn: function() {
-			$('#person #email_search').on('click', function(){
-				person.queryParam.email = $('#person #email_key').val();
-				$.ajax({
-					url: person.url.findByEmail,
-					data: person.queryParam,
-					type: 'get',
-					dataType: 'json',
-					success: function(data) {
-						person.transformData('#person #email_area tbody', data);
-					},
-					complete: function() {
-						person.clearQueryParam();
-					}
-				});
+		searchBtn: function() {
+			$('#search_person').on('click', function(){
+				var paramArray = new Array();
+				if($('#name_key').val() != ''){
+					paramArray.push('name');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#name_key').val() + '%');
+				}
+				if($('#email_key').val() != ''){
+					paramArray.push('email');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#email_key').val() + '%');
+				}
+				if($('#age_min').val() != ''){
+					paramArray.push('age');
+					paramArray.push(Condition.moreOrEqual);
+					paramArray.push($('#age_min').val());
+				}
+				if($('#age_max').val() != ''){
+					paramArray.push('age');
+					paramArray.push(Condition.lessOrEqual);
+					paramArray.push($('#age_max').val());
+				}
+				if($('#gender_key').val() != 'all'){
+					paramArray.push('gender');
+					paramArray.push(Condition.equal);
+					paramArray.push($('#gender_key').val());
+				}
+				person.pageRequest.property = paramArray.join(',');
+				person.findAll(person.pageRequest);
 			});
 		}
 }

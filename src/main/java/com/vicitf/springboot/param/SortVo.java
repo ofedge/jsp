@@ -21,14 +21,14 @@ public class SortVo {
 
 	public static class OrderVo {
 		private String property;
-		private Direction direction;
+		private DirectionVo direction;
 		
 		public OrderVo(String property) {
 			this.property = property;
-			this.direction = Direction.ASC;
+			this.direction = DirectionVo.ASC;
 		}
 
-		public OrderVo(String property, Direction direction) {
+		public OrderVo(String property, DirectionVo direction) {
 			this.property = property;
 			this.direction = direction;
 		}
@@ -37,7 +37,7 @@ public class SortVo {
 			return property;
 		}
 
-		public Direction getDirection() {
+		public DirectionVo getDirection() {
 			return direction;
 		}
 
@@ -49,7 +49,7 @@ public class SortVo {
 
 	}
 
-	public static enum Direction {
+	public static enum DirectionVo {
 		ASC, DESC
 	}
 
