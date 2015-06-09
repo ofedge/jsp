@@ -1,3 +1,11 @@
+--选择不同主数据库时候要注意的地方:
+--1. application.properties的数据库连接配置
+--2. User的注解类
+--3. PrimaryDataSourceConfiguration类中JpaVendorAdapterConfiguration方法里的database设置
+
+
+--PrimaryDataSource
+
 --SQL Server
 drop table [test].[dbo].[t_user];
 create table [test].[dbo].[t_user](
@@ -20,14 +28,16 @@ create sequence user_seq;
 create table t_user(
   id number(11) primary key,
   username varchar2(20) not null unique,
-  password varchar2(20)
+  password varchar2(20),
   realname varchar2(50),
   gender varchar2(10),
   email varchar2(50),
   avatar varchar2(50),
   login_address varchar2(20)
 );
-insert into t_user(username, password, avatar) values ('admin','admin','default.png');
+insert into t_user(id, username, password, avatar) values (user_seq.nextval, 'admin','admin','default.png');
+
+--SecondaryDataSource
 
 --MySQL
 DROP TABLE IF EXISTS `t_person`;

@@ -7,8 +7,9 @@ var bindPersonBtn = function() {
 	person.addPersonBtn();
 	person.previousBtn();
 	person.nextBtn();
-	person.nameSearchBtn();
-	person.emailSearchBtn();
+	person.searchBtn();
+	person.addPersonModalBtn();
+	person.addPersonSubmitBtn();
 }
 
 var person = {
@@ -20,7 +21,8 @@ var person = {
 				sb.append('<td>').append(content[i].name).append('</td>');
 				sb.append('<td>').append(content[i].email).append('</td>');
 				sb.append('<td>').append(content[i].age).append('</td>');
-				sb.append('<td>').append(content[i].gender).append('</td></tr>');
+				sb.append('<td>').append(content[i].gender).append('</td>');
+				sb.append('<td>').append(content[i].country).append('</td></tr>');
 			}
 			$(dom).html(sb.toString());
 			if(data.first == true) $('#person .previous').attr('disabled', 'disabled');
@@ -42,26 +44,29 @@ var person = {
 			$(dom).html(sb.toString());
 		},
 		url: {
-			findAll: '/person/findAll',
+			findAllPerson: '/person/findAllPerson',
 			save: '/person/save',
-			findByName: '/person/findByName',
-			findByEmail: '/person/findByEmail'
+			findCountryBean: '/country/findCountryBean'
 		},
 		pageRequest: {
 			number: 0,
-			size: 10
+			size: 10,
+			property: '',
+			order: ''
 		},
 		person: {
 			name: '',
 			email: '',
 			age: 0,
-			gender: ''
+			gender: '',
+			countryId: 0
 		},
 		clearPerson: function() {
 			person.person.name = '';
 			person.person.email = '';
 			person.person.age = 0;
 			person.person.gender = '';
+			person.person.countryId = 0;
 		},
 		queryParam: {
 			name: '',
@@ -73,7 +78,7 @@ var person = {
 		},
 		findAll: function(pageRequest) {
 			$.ajax({
-				url: person.url.findAll,
+				url: person.url.findAllPerson,
 				type: 'get',
 				data: pageRequest,
 				dataType: 'json',
@@ -83,29 +88,29 @@ var person = {
 			});
 		},
 		addPersonBtn: function() {
-			$('#person #add_person').submit(function(){
-				person.person.name = $('#person #name').val();
-				person.person.email = $('#person #email').val();
-				person.person.age = $('#person #age').val();
-				person.person.gender = $('#person #gender').val();
-				if (person.person.name.trim() =='' || person.person.email.trim() == '') {
-					$('#person #form_area').html("can't be null");
+			$('#add_person_form').submit(function(){
+				person.person.name = $('#name').val();
+				person.person.email = $('#email').val();
+				person.person.age = $('#age').val();
+				person.person.gender = $('#gender').val();
+				if (person.person.name == '' || person.person.email == '') {
 					return false;
 				}
+				person.person.countryId = $('#country_id').val();
 				$.ajax({
 					url: person.url.save,
 					data: person.person,
 					type: 'post',
 					dataType: 'json',
 					success: function(data) {
-						$('#person #form_area').html('succees[name: ' + data.name + ', email: ' + data.email + ', age: ' + data.age + ', gender: ' + data.gender + ']');
+						
 					},
 					complete: function() {
 						person.findAll(person.pageRequest);
 						person.clearPerson();
-						$('#person #name').val('');
-						$('#person #email').val('');
-						$('#person #age').val(20);
+						$('#name').val('');
+						$('#email').val('');
+						$('#age').val('');
 					}
 				});
 				return false; // 不要跳
@@ -123,38 +128,69 @@ var person = {
 				person.findAll(person.pageRequest);
 			});
 		},
-		nameSearchBtn: function() {
-			$('#person #name_search').on('click', function(){
-				person.queryParam.name = $('#person #name_key').val();
-				$.ajax({
-					url: person.url.findByName,
-					data: person.queryParam,
-					type: 'get',
-					dataType: 'json',
-					success: function(data) {
-						person.transformData('#person #name_area tbody', data);
-					},
-					complete: function() {
-						person.clearQueryParam();
-					}
-				});
+		searchBtn: function() {
+			$('#search_person').on('click', function(){
+				var paramArray = new Array();
+				if($('#name_key').val() != ''){
+					paramArray.push(TablePrefix.person + 'name');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#name_key').val() + '%');
+				}
+				if($('#email_key').val() != ''){
+					paramArray.push(TablePrefix.person + 'email');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#email_key').val() + '%');
+				}
+				if($('#age_min').val() != ''){
+					paramArray.push(TablePrefix.person + 'age');
+					paramArray.push(Condition.moreOrEqual);
+					paramArray.push($('#age_min').val());
+				}
+				if($('#age_max').val() != ''){
+					paramArray.push(TablePrefix.person + 'age');
+					paramArray.push(Condition.lessOrEqual);
+					paramArray.push($('#age_max').val());
+				}
+				if($('#gender_key').val() != 'all'){
+					paramArray.push(TablePrefix.person + 'gender');
+					paramArray.push(Condition.equal);
+					paramArray.push($('#gender_key').val());
+				}
+				if($('#country_key').val() != ''){
+					paramArray.push(TablePrefix.country + 'name');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#country_key').val() + '%');
+				}
+				person.pageRequest.property = paramArray.join(',');
+				person.findAll(person.pageRequest);
 			});
 		},
-		emailSearchBtn: function() {
-			$('#person #email_search').on('click', function(){
-				person.queryParam.email = $('#person #email_key').val();
-				$.ajax({
-					url: person.url.findByEmail,
-					data: person.queryParam,
-					type: 'get',
-					dataType: 'json',
-					success: function(data) {
-						person.transformData('#person #email_area tbody', data);
-					},
-					complete: function() {
-						person.clearQueryParam();
+		addPersonModalBtn: function(){
+			$('#add_person').on('click', function(){
+				$('#name').val('');
+				$('#email').val('');
+				$('#age').val('');
+				person.loadCountryList();
+				$('#add_person_modal').modal('show');
+			});
+		},
+		addPersonSubmitBtn: function(){
+			$('#save_person').on('click', function(){
+				$('#add_person_form').trigger('submit');
+			});
+		},
+		loadCountryList: function(){
+			$.ajax({
+				url: person.url.findCountryBean,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var sb = new StringBuffer();
+					for (var i = 0; i < data.length; i++) {
+						sb.append('<option value="').append(data[i].id).append('">').append(data[i].name).append('</option>');
 					}
-				});
+					$('#country_id').html(sb.toString());
+				}
 			});
 		}
 }

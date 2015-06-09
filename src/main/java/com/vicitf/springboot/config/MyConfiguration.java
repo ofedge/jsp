@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.vicitf.springboot.Application;
+import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.config.filter.LoginFilter;
 import com.vicitf.springboot.param.CommonParam;
 
@@ -76,11 +77,11 @@ public class MyConfiguration {
 			@Override
 			public void sessionDestroyed(HttpSessionEvent event) {
 				System.out.println("-----sessionDestroyed-----");
-				String loginUser = (String) event.getSession().getAttribute("loginUser");
-				if (loginUser != null) {
-					Map<String, String> onlineUsers = (Map<String, String>) event.getSession().getServletContext().getAttribute(CommonParam.ONLINE_USERS);
-					System.out.println("-----" + loginUser + ": " + onlineUsers.get(loginUser) + " 下线-----");
-					onlineUsers.remove(loginUser);
+				UserBean sessionUser = (UserBean) event.getSession().getAttribute(CommonParam.SESSION_USER);
+				if (sessionUser != null) {
+					Map<Long, String> onlineUsers = (Map<Long, String>) event.getSession().getServletContext().getAttribute(CommonParam.ONLINE_USERS);
+					System.out.println("-----" + sessionUser.getUsername() + ": " + onlineUsers.get(sessionUser.getId()) + " 下线-----");
+					onlineUsers.remove(sessionUser.getId());
 				}
 			}
 			

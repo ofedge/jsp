@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vicitf.springboot.bean.CountryBean;
 import com.vicitf.springboot.domain.secondary.Country;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.service.CountryService;
@@ -27,5 +28,10 @@ public class CountryController {
 	@RequestMapping("/findByCountryname/{countryName}")
 	public List<Person> findPersonsInCountry(@PathVariable String countryName) {
 		return countryService.findPersonsInCountry(countryName);
+	}
+	
+	@RequestMapping("/findCountryBean")
+	public List<CountryBean> findCountryBean(){
+		return countryService.findCountryBean();
 	}
 }

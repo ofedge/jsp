@@ -1,6 +1,7 @@
 $(function(){
 	signup.init();
 	signup.btn();
+	$('#username').focus();
 });
 var signup = {
 		init:function(){

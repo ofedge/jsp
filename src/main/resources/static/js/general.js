@@ -6,6 +6,27 @@ $(function(){
 	});
 });
 
+// 排序参数
+var Direction = {
+		asc: 'ASC',
+		desc: 'DESC'
+}
+
+// 条件参数
+var Condition = {
+		equal: '=',
+		like: 'like',
+		moreThan: '>',
+		moreOrEqual: '>=',
+		lessThan: '<',
+		lessOrEqual: '<='
+}
+
+var TablePrefix = {
+		person: 'p.',
+		country: 'c.',
+}
+
 var StringBuffer = function(str) {
 	if (str != undefined)
 		this.value = new Array(str);

@@ -21,4 +21,7 @@ public class CommonParam {
 	
 	/** 默认用户头像名称 */
 	public static final String DEFAULT_AVATAR = "default.png";
+	
+	/** 默认字符串参数分隔符 */
+	public static final String DEFAULT_REGEX = ",";
 }

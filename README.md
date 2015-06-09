@@ -27,6 +27,8 @@
 1. filter和interceptor相互拦截的有点恶心, 不过还好可以了, 指定时间段内不能访问做成功了, 顺便整理一下类, 接下来研究spring mvc吧
 1. 做spring mvc文件上传来着, 又要添加注册功能, 还添加了bootstrap, 突然忙不过来了
 1. 未注册前的所有动作都要加到filter过滤列表里, 比如检查用户名时候, 会报302, 然后就重定向到首页了, 当然ajax方法是不会在当前页跳转的
+1. 模仿spring mvc的分页做了个分页, 按自己想法实现的, 好麻烦啊, 自定义查询好像每次query.getResultList()之后EntityManager就关闭了
+1. Transformers.aliasToBean(Class class)并不好, 我要的是Long型, 它非说出来是Integer型, 转不过去, 我数据库字段长度11转Long怎么了, 上次oracle里你给我转成BigDecimal还没跟你计较呢
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

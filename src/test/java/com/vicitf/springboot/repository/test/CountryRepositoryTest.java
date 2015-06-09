@@ -9,6 +9,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vicitf.springboot.Application;
+import com.vicitf.springboot.bean.CountryBean;
 import com.vicitf.springboot.domain.secondary.Country;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.repository.secondary.CountryRepository;
@@ -33,6 +34,14 @@ public class CountryRepositoryTest {
 		List<Person> list = cr.findPersonsInCountry("chi");
 		for (Person p : list) {
 			System.out.println(p);
+		}
+	}
+	
+	@Test
+	public void findCountryBeanTest() {
+		List<CountryBean> list = cr.findCountryBean();
+		for (CountryBean c : list) {
+			System.out.println(c);
 		}
 	}
 }

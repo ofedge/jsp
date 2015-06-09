@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.vicitf.springboot.bean.CountryBean;
 import com.vicitf.springboot.domain.secondary.Person;
 
 public class CountryRepositoryImpl {
@@ -28,5 +31,13 @@ public class CountryRepositoryImpl {
 		query.setParameter("countryName", "%" + countryName + "%");
 		List<Person> list = query.getResultList();
 		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CountryBean> findCountryBean(){
+		String sql = "select c.id, c.name from t_country c order by c.id asc";
+		Query query = entityManager.createNativeQuery(sql);
+		query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(CountryBean.class));
+		return query.getResultList();
 	}
 }

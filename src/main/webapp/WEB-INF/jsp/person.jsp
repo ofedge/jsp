@@ -8,6 +8,7 @@
 <title>person</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="/css/person/person.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/general.js"></script>
@@ -48,6 +49,48 @@
     <div id="person">
       <fieldset>
         <legend>All Person:</legend>
+        <div id="person_search" class="form-inline">
+          <div class="form-group col-sm-3">
+            <label for="name_key" class="control-label">name:</label>
+            <input type="text" class="form-control" id="name_key" placeholder="name" />
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="email_key" class="control-label">email:</label>
+            <input type="text" class="form-control" id="email_key" placeholder="email" />
+          </div>
+          <div class="form-group col-sm-2">
+            <label for="age_min" class="control-label">min age</label>
+            <input type="number" class="form-control" id="age_min" min="0" max="100" placeholder="min age" />
+          </div>
+          <div class="form-group col-sm-2">
+            <label for="age_max" class="control-label">max age</label>
+            <input type="number" class="form-control" id="age_max" min="0" max="100" placeholder="max age" />
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="gender_key" class="control-label">gender:</label>
+            <select class="form-control" id="gender_key">
+              <option value="all">All</option>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="country_key" class="control-label">country:</label>
+            <input type="text" class="form-control" id="country_key" placeholder="country" />
+          </div>
+          <div class="form-group col-sm-2">
+            <button class="btn btn-default" id="search_person">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <span>Search</span>
+            </button>
+          </div>
+          <div class="form-gropu col-sm-2">
+            <button type="button" class="btn btn-default" id="add_person">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <span>Add</span>
+            </button>
+          </div>
+        </div>
         <div id="person_info">
           <table class="table">
             <thead>
@@ -57,6 +100,7 @@
                 <th>email</th>
                 <th>age</th>
                 <th>gender</th>
+                <th>country</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -68,81 +112,59 @@
           <a class="next btn btn-default">next</a>
         </div>
       </fieldset>
-      <fieldset>
-        <legend>Add Person</legend>
-        <form class="form-inline" id="add_person">
-          <div class="form-group">
-            <label for="name" class="control-label">name:</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="name" />
-          </div>
-          <div class="form-group">
-            <label for="email" class="control-label">email:</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="email" />
-          </div>
-          <div class="form-group">
-            <label for="age">age:</label>
-            <input type="number" class="form-control" name="age" id="age" min="1" max="100" value="20" />
-          </div>
-          <div class="form-group">
-            <label for="gender" class="control-label">gender:</label>
-            <select name="gender" id="gender" class="form-control">
-              <option value="male">male</option>
-              <option value="female">female</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">Add</button>
-          </div>
-        </form>
-      </fieldset>
-      <fieldset>
-        <legend>Search</legend>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="name_key" class="control-label col-sm-2">input name to search:</label>
-            <div class="col-sm-3">
-              <input type="text" id="name_key" class="form-control col-sm-3" placeholder="name" />
+    </div>
+  </div>
+  <div class="modal fade" id="add_person_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4>Add Person</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="add_person_form">
+            <div class="form-group">
+              <label for="name" class="control-label col-sm-2">name:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="name" id="name" placeholder="name" />
+              </div>
             </div>
-            <a class="btn btn-default col-sm-1" id="name_search">search</a>
-          </div>
-          <div id="name_area">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                  <th>age</th>
-                  <th>gender</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <hr />
-          <div class="form-group">
-            <label for="email_key" class="control-label col-sm-2">input email to search:</label>
-            <div class="col-sm-3">
-              <input type="text" id="email_key" class="form-control col-sm-3" />
+            <div class="form-group">
+              <label for="email" class="control-label col-sm-2">email:</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" name="email" id="email" placeholder="email" />
+              </div>
             </div>
-            <a class="btn btn-default col-sm-1" id="email_search">search</a>
-          </div>
-          <div id="email_area">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                  <th>age</th>
-                  <th>gender</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </form>
-      </fieldset>
+            <div class="form-group">
+              <label for="age" class="control-label col-sm-2">age:</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="age" id="age" min="1" max="100" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="gender" class="control-label col-sm-2">gender:</label>
+              <div class="col-sm-9">
+                <select name="gender" id="gender" class="form-control">
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="country_id" class="control-label col-sm-2">country:</label>
+              <div class="col-sm-9">
+                <select name="countryId" id="country_id" class="form-control"></select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save_person">Save</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>

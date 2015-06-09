@@ -6,7 +6,6 @@ $(function(){
 var bindCountryBtn = function() {
 	country.previousBtn();
 	country.nextBtn();
-	country.countrySearchBtn();
 }
 
 var country = {
@@ -26,16 +25,6 @@ var country = {
 			else $('#country .next').removeAttr('disabled');
 			$('#country .number').html(parseInt(data.number) + 1);
 			$('#country .totalPages').html(data.totalPages);
-		},
-		transformData: function(dom, data) {
-			var sb = new StringBuffer();
-			for (var i = 0; i < data.length; i++) {
-				sb.append('<tr><td>').append(i + 1).append('</td>');
-				sb.append('<td>').append(data[i].name).append('</td>');
-				sb.append('<td>').append(data[i].region).append('</td>');
-				sb.append('<td>').append(data[i].code).append('</td></tr>');
-			}
-			$(dom).html(info);
 		},
 		url: {
 			findAll: '/country/findAll',
@@ -66,19 +55,6 @@ var country = {
 			$('#country .next').on('click', function(){
 				country.pageRequest.number = parseInt($('#country .number').html());
 				country.findAll(country.pageRequest);
-			});
-		},
-		countrySearchBtn: function() {
-			$('#country #country_search').on('click', function(){
-				var countryName = $('#country #country_key').val();
-				$.ajax({
-					url: country.url.findByCountryname + countryName,
-					type: 'get',
-					dataType: 'json',
-					success: function(data) {
-						person.transformData('#country #country_area tbody', data);
-					}
-				});
 			});
 		}
 }
