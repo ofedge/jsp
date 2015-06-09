@@ -33,7 +33,7 @@ public class PersonRepositoryTest {
 	
 	@Test
 	public void findByIdTest() {
-		Person p = ps.findById(1L);
+		Person p = ps.findById(9L);
 		System.out.println(p);
 	}
 	
@@ -97,5 +97,17 @@ public class PersonRepositoryTest {
 		PageParam pageParam = new PageParam(0, 10, param, sort);
 		PageVo<PersonBean> vo = ps.findAllPerson(pageParam);
 		System.out.println(vo);
+	}
+	
+	@Test
+	public void updatePersonTest() {
+		Person person = new Person();
+		person.setId(1L);
+		person.setName("Jennifer");
+		person.setEmail("JDILLY");
+		person.setAge(27);
+		person.setGender("female");
+		person.setCountryId(20L);
+		System.out.println(ps.updatePerson(person));
 	}
 }

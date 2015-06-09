@@ -86,7 +86,7 @@ public class PersonRepositoryImpl {
 		PageVo<PersonBean> vo = new PageVo<PersonBean>(pageParam.getPage(), pageParam.getNums());
 		StringBuffer sbSql = new StringBuffer();
 		String sql = "";
-		sbSql.append(" select p.name \"name\", p.email \"email\", p.age \"age\", p.gender \"gender\", c.name \"country\" from t_person p, t_country c where p.country_id = c.id");
+		sbSql.append(" select p.id \"id\", p.name \"name\", p.email \"email\", p.age \"age\", p.gender \"gender\", c.name \"country\" from t_person p, t_country c where p.country_id = c.id");
 		if (pageParam.getParam() != null) {
 			for (int i = 1; i <= pageParam.getParam().size(); i++) {
 				PropertyVo propertyVo = pageParam.getParam().get(i - 1);

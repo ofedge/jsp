@@ -1,11 +1,20 @@
 package com.vicitf.springboot.bean;
 
 public class PersonBean {
+	private Integer id;
 	private String name;
 	private String email;
 	private Integer age;
 	private String gender;
 	private String country;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -49,8 +58,9 @@ public class PersonBean {
 
 	@Override
 	public String toString() {
-		return "PersonBean [name=" + name + ", email=" + email + ", age=" + age
-				+ ", gender=" + gender + ", country=" + country + "]";
+		return "PersonBean [id=" + id + ", name=" + name + ", email=" + email
+				+ ", age=" + age + ", gender=" + gender + ", country="
+				+ country + "]";
 	}
 
 }

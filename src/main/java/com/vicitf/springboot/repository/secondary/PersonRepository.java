@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -73,4 +74,17 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	 * @return
 	 */
 	PageVo<PersonBean> findAllPerson(PageParam pageParam);
+	
+	/**
+	 * @param name
+	 * @param email
+	 * @param age
+	 * @param gender
+	 * @param countryId
+	 * @param id
+	 * @return
+	 */
+	@Modifying
+	@Query(value = "update Person p set p.name = ?1, p.email = ?2, p.age = ?3, p.gender = ?4, p.countryId = ?5 where p.id = ?6")
+	int updatePerson(String name, String email, Integer age, String gender, Long countryId, Long id);
 }

@@ -25,6 +25,7 @@ var country = {
 			else $('#country .next').removeAttr('disabled');
 			$('#country .number').html(parseInt(data.number) + 1);
 			$('#country .totalPages').html(data.totalPages);
+			$('#country .totalElements').html(data.totalElements);
 		},
 		url: {
 			findAll: '/country/findAll',

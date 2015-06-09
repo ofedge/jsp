@@ -19,11 +19,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement // 不要也可以...
+@EnableTransactionManagement
 @EnableJpaRepositories(
 		basePackages = {"com.vicitf.springboot.repository.primary"},
-		entityManagerFactoryRef = "primaryEntityManagerFactory", //对应primaryEntityManagerFactory, 我就不给Bean指定name了
-		transactionManagerRef = "primayrTransactionManager") //同上, 但是不要也可以...
+		entityManagerFactoryRef = "primaryEntityManagerFactory", //对应primaryEntityManagerFactory
+		transactionManagerRef = "primayrTransactionManager")
 public class PrimaryDataSourceConfiguration {
 	
 	@Value("${datasource.primary.alias}")

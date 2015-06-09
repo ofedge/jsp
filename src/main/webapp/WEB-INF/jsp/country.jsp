@@ -63,7 +63,7 @@
         </div>
         <div class="pagination">
           <a class="previous btn btn-default">previous</a>
-          <span class="number"></span>/<span class="totalPages"></span>
+          <span class="number"></span>/<span class="totalPages"></span>(<span class="totalElements"></span>)
           <a class="next btn btn-default">next</a>
         </div>
       </fieldset>

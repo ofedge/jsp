@@ -66,4 +66,12 @@ public interface PersonService {
 	 * @return
 	 */
 	PageVo<PersonBean> findAllPerson(PageParam pageParam);
+	
+	/**
+	 * 修改person信息
+	 * 
+	 * @param p
+	 * @return
+	 */
+	boolean updatePerson(Person person);
 }

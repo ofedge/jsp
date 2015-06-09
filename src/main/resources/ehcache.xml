@@ -12,7 +12,7 @@
             memoryStoreEvictionPolicy="LRU">
     </defaultCache>
     
-    <cache name="findAll"
+    <cache name="countryBeanList"
             maxElementsInMemory="100"
             eternal="false"
             timeToIdleSeconds="120"

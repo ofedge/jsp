@@ -29,6 +29,9 @@
 1. 未注册前的所有动作都要加到filter过滤列表里, 比如检查用户名时候, 会报302, 然后就重定向到首页了, 当然ajax方法是不会在当前页跳转的
 1. 模仿spring mvc的分页做了个分页, 按自己想法实现的, 好麻烦啊, 自定义查询好像每次query.getResultList()之后EntityManager就关闭了
 1. Transformers.aliasToBean(Class class)并不好, 我要的是Long型, 它非说出来是Integer型, 转不过去, 我数据库字段长度11转Long怎么了, 上次oracle里你给我转成BigDecimal还没跟你计较呢
+(哦不对, sqlserver主键int, 没长度, 貌似也不能设置长度)
+1. 重大问题, 修改时候会报异常: `javax.persistence.TransactionRequiredException: Executing an update/delete query`, 事务哪里出错了么
+使用jpa风格的方式来写, 加@Modifying注解, 依然报错, 加@Transactional, 指明事务就好了, 这个@Transactional是springframework的那个, 加在repository里面和service里没区别
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

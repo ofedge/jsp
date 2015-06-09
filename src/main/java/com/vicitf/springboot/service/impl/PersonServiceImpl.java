@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
@@ -57,5 +58,11 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public PageVo<PersonBean> findAllPerson(PageParam pageParam) {
 		return personRepository.findAllPerson(pageParam);
+	}
+
+	@Override
+	@Transactional("secondaryTransactionManager")
+	public boolean updatePerson(Person person) {
+		return personRepository.updatePerson(person.getName(), person.getEmail(), person.getAge(), person.getGender(), person.getCountryId(), person.getId()) > 0;
 	}
 }

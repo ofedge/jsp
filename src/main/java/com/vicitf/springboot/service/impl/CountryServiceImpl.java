@@ -3,6 +3,7 @@ package com.vicitf.springboot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import com.vicitf.springboot.service.CountryService;
 
 @Service
 public class CountryServiceImpl implements CountryService {
+	
+	private static final String COUNTRY_BEAN_LIST = "countryBeanList";
+	private static final String COUNTRY_BEAN_KEY = "\"countryBeanKey\"";
 	
 	@Autowired
 	private CountryRepository countryRepository;
@@ -30,6 +34,7 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	@Override
+	@Cacheable(value = COUNTRY_BEAN_LIST, key = COUNTRY_BEAN_KEY)
 	public List<CountryBean> findCountryBean() {
 		return countryRepository.findCountryBean();
 	}

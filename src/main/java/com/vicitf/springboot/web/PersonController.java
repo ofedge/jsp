@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vicitf.springboot.bean.PersonBean;
@@ -46,7 +48,7 @@ public class PersonController {
 
 	@RequestMapping("/findById/{id}")
 	public Person findById(@PathVariable Long id) {
-		return personService.findById(1L);
+		return personService.findById(id);
 	}
 
 	@RequestMapping("/findAll")
@@ -114,5 +116,11 @@ public class PersonController {
 		SortVo sort = orders == null ? null : new SortVo(orders);
 		PageParam pageParam = new PageParam(number, size, param, sort);
 		return personService.findAllPerson(pageParam);
+	}
+	
+	@RequestMapping(value = "/updatePerson", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updatePerson(Person person) {
+		return personService.updatePerson(person);
 	}
 }
