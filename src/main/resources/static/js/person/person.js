@@ -8,6 +8,8 @@ var bindPersonBtn = function() {
 	person.previousBtn();
 	person.nextBtn();
 	person.searchBtn();
+	person.addPersonModalBtn();
+	person.addPersonSubmitBtn();
 }
 
 var person = {
@@ -44,6 +46,7 @@ var person = {
 		url: {
 			findAllPerson: '/person/findAllPerson',
 			save: '/person/save',
+			findCountryBean: '/country/findCountryBean'
 		},
 		pageRequest: {
 			number: 0,
@@ -55,13 +58,15 @@ var person = {
 			name: '',
 			email: '',
 			age: 0,
-			gender: ''
+			gender: '',
+			countryId: 0
 		},
 		clearPerson: function() {
 			person.person.name = '';
 			person.person.email = '';
 			person.person.age = 0;
 			person.person.gender = '';
+			person.person.countryId = 0;
 		},
 		queryParam: {
 			name: '',
@@ -83,29 +88,29 @@ var person = {
 			});
 		},
 		addPersonBtn: function() {
-			$('#person #add_person').submit(function(){
-				person.person.name = $('#person #name').val();
-				person.person.email = $('#person #email').val();
-				person.person.age = $('#person #age').val();
-				person.person.gender = $('#person #gender').val();
-				if (person.person.name.trim() =='' || person.person.email.trim() == '') {
-					$('#person #form_area').html("can't be null");
+			$('#add_person_form').submit(function(){
+				person.person.name = $('#name').val();
+				person.person.email = $('#email').val();
+				person.person.age = $('#age').val();
+				person.person.gender = $('#gender').val();
+				if (person.person.name == '' || person.person.email == '') {
 					return false;
 				}
+				person.person.countryId = $('#country_id').val();
 				$.ajax({
 					url: person.url.save,
 					data: person.person,
 					type: 'post',
 					dataType: 'json',
 					success: function(data) {
-						$('#person #form_area').html('succees[name: ' + data.name + ', email: ' + data.email + ', age: ' + data.age + ', gender: ' + data.gender + ']');
+						
 					},
 					complete: function() {
 						person.findAll(person.pageRequest);
 						person.clearPerson();
-						$('#person #name').val('');
-						$('#person #email').val('');
-						$('#person #age').val(20);
+						$('#name').val('');
+						$('#email').val('');
+						$('#age').val('');
 					}
 				});
 				return false; // 不要跳
@@ -151,8 +156,41 @@ var person = {
 					paramArray.push(Condition.equal);
 					paramArray.push($('#gender_key').val());
 				}
+				if($('#country_key').val() != ''){
+					paramArray.push(TablePrefix.country + 'name');
+					paramArray.push(Condition.like);
+					paramArray.push('%' + $('#country_key').val() + '%');
+				}
 				person.pageRequest.property = paramArray.join(',');
 				person.findAll(person.pageRequest);
+			});
+		},
+		addPersonModalBtn: function(){
+			$('#add_person').on('click', function(){
+				$('#name').val('');
+				$('#email').val('');
+				$('#age').val('');
+				person.loadCountryList();
+				$('#add_person_modal').modal('show');
+			});
+		},
+		addPersonSubmitBtn: function(){
+			$('#save_person').on('click', function(){
+				$('#add_person_form').trigger('submit');
+			});
+		},
+		loadCountryList: function(){
+			$.ajax({
+				url: person.url.findCountryBean,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var sb = new StringBuffer();
+					for (var i = 0; i < data.length; i++) {
+						sb.append('<option value="').append(data[i].id).append('">').append(data[i].name).append('</option>');
+					}
+					$('#country_id').html(sb.toString());
+				}
 			});
 		}
 }

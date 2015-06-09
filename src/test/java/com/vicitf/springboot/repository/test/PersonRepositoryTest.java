@@ -90,6 +90,7 @@ public class PersonRepositoryTest {
 		List<PropertyVo> param = new ArrayList<PropertyVo>();
 		param.add(new PropertyVo("gender", "male", Condition.EQUAL));
 		param.add(new PropertyVo("age", 20, Condition.MORE_OR_EQUAL));
+		param.add(new PropertyVo("age", 30, Condition.LESS_OR_EQUAL));
 		List<OrderVo> orders = new ArrayList<OrderVo>();
 		orders.add(new OrderVo("age"));
 		SortVo sort = new SortVo(orders);

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.vicitf.springboot.bean.CountryBean;
 import com.vicitf.springboot.domain.secondary.Country;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.repository.secondary.CountryRepository;
@@ -26,6 +27,11 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	public List<Person> findPersonsInCountry(String countryName) {
 		return countryRepository.findPersonsInCountry(countryName);
+	}
+
+	@Override
+	public List<CountryBean> findCountryBean() {
+		return countryRepository.findCountryBean();
 	}
 
 }

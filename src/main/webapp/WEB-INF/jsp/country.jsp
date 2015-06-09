@@ -12,7 +12,6 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/general.js"></script>
 <script src="/js/country/country.js"></script>
-<script src="/js/person/person.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -67,32 +66,6 @@
           <span class="number"></span>/<span class="totalPages"></span>
           <a class="next btn btn-default">next</a>
         </div>
-      </fieldset>
-      <fieldset>
-        <legend>Search</legend>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="country_key" class="control-label col-sm-3">input country name to search person:</label>
-            <div class="col-sm-3">
-              <input type="text" id="country_key" class="form-control col-sm-3" placeholder="country name" />
-            </div>
-            <a class="btn btn-default col-sm-1" id="country_search">search</a>
-          </div>
-          <div id="country_area">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                  <th>age</th>
-                  <th>gender</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </form>
       </fieldset>
     </div>
   </div>

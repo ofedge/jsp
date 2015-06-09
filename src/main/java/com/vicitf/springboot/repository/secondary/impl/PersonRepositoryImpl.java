@@ -53,8 +53,9 @@ public class PersonRepositoryImpl {
 		String sql = "";
 		sbSql.append(" select count(1) from t_person p, t_country c where p.country_id = c.id");
 		if (pageParam.getParam() != null) {
-			for (PropertyVo propertyVo : pageParam.getParam()) {
-				sbSql.append(" and " + propertyVo.getKey() + " " + propertyVo.getCondition().toString() + " :" + propertyVo.getKey());
+			for (int i = 1; i <= pageParam.getParam().size(); i++) {
+				PropertyVo propertyVo = pageParam.getParam().get(i - 1);
+				sbSql.append(" and " + propertyVo.getKey() + " " + propertyVo.getCondition().toString() + " ?" + i);
 			}
 		}
 		if (pageParam.getSort() != null) {
@@ -68,8 +69,9 @@ public class PersonRepositoryImpl {
 		}
 		Query query = entityManager.createNativeQuery(sql);
 		if (pageParam.getParam() != null) {
-			for (PropertyVo propertyVo : pageParam.getParam()) {
-				query.setParameter(propertyVo.getKey(), propertyVo.getValue());
+			for (int i = 1; i <= pageParam.getParam().size(); i++) {
+				PropertyVo propertyVo = pageParam.getParam().get(i - 1);
+				query.setParameter(i, propertyVo.getValue());
 			}
 		}
 		Object obj = query.getSingleResult();
@@ -86,8 +88,9 @@ public class PersonRepositoryImpl {
 		String sql = "";
 		sbSql.append(" select p.name \"name\", p.email \"email\", p.age \"age\", p.gender \"gender\", c.name \"country\" from t_person p, t_country c where p.country_id = c.id");
 		if (pageParam.getParam() != null) {
-			for (PropertyVo propertyVo : pageParam.getParam()) {
-				sbSql.append(" and " + propertyVo.getKey() + " " + propertyVo.getCondition().toString() + " :" + propertyVo.getKey());
+			for (int i = 1; i <= pageParam.getParam().size(); i++) {
+				PropertyVo propertyVo = pageParam.getParam().get(i - 1);
+				sbSql.append(" and " + propertyVo.getKey() + " " + propertyVo.getCondition().toString() + " ?" + i);
 			}
 		}
 		if (pageParam.getSort() != null) {
@@ -102,8 +105,9 @@ public class PersonRepositoryImpl {
 		}
 		Query query = entityManager.createNativeQuery(sql);
 		if (pageParam.getParam() != null) {
-			for (PropertyVo propertyVo : pageParam.getParam()) {
-				query.setParameter(propertyVo.getKey(), propertyVo.getValue());
+			for (int i = 1; i <= pageParam.getParam().size(); i++) {
+				PropertyVo propertyVo = pageParam.getParam().get(i - 1);
+				query.setParameter(i, propertyVo.getValue());
 			}
 		}
 		Long totalElements = this.countAllPerson(pageParam);
@@ -114,9 +118,9 @@ public class PersonRepositoryImpl {
 		List<PersonBean> content = query.getResultList();
 		vo.setContent(content);
 		vo.setNumberOfElements(content.size());
-		vo.setFirst(pageParam.getPage() == 0);
 		long totalPage = totalElements % pageParam.getNums() == 0 ? totalElements / pageParam.getNums() : totalElements / pageParam.getNums() + 1;
-		vo.setLast(pageParam.getPage() + 1 == totalPage);
+		vo.setFirst(pageParam.getPage() == 0 || totalPage == 0L);
+		vo.setLast(pageParam.getPage() + 1 == totalPage || totalPage == 0L);
 		vo.setTotalPages(Integer.valueOf(String.valueOf(totalPage)));
 		return vo;
 	}
