@@ -3,8 +3,6 @@ package com.vicitf.springboot.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,8 +27,7 @@ import com.vicitf.springboot.utils.StringUtils;
 
 @RestController
 @RequestMapping("/person")
-public class PersonController {
-	private Log log = LogFactory.getLog(getClass());
+public class PersonController extends BaseController {
 
 	@Autowired
 	private PersonService personService;

@@ -30,5 +30,15 @@ public interface UserService {
 	 */
 	boolean existsByUsername(String username);
 	
-	
+	/**
+	 * 更新个人信息
+	 * 
+	 * @param avatar
+	 * @param realname
+	 * @param email
+	 * @param female
+	 * @param id
+	 * @return
+	 */
+	boolean updateProfile(String avatar, String realname, String email, String gender, Long id);
 }

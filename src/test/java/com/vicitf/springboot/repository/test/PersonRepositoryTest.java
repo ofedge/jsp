@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vicitf.springboot.Application;
+import com.vicitf.springboot.ApplicationTest;
 import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.param.PageParam;
@@ -26,7 +26,7 @@ import com.vicitf.springboot.param.SortVo.OrderVo;
 import com.vicitf.springboot.service.PersonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = ApplicationTest.class)
 public class PersonRepositoryTest {
 	@Autowired
 	private PersonService ps;

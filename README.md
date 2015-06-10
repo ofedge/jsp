@@ -32,6 +32,8 @@
 (哦不对, sqlserver主键int, 没长度, 貌似也不能设置长度)
 1. 重大问题, 修改时候会报异常: `javax.persistence.TransactionRequiredException: Executing an update/delete query`, 事务哪里出错了么
 使用jpa风格的方式来写, 加@Modifying注解, 依然报错, 加@Transactional, 指明事务就好了, 这个@Transactional是springframework的那个, 加在repository里面和service里没区别
+1. 文件上传, 配置必须使用`MultipartConfigElement`, 页面使用上传图片使用bootstrap file input插件, 挺好看的, 跟bootstrap风格完美配合
+1. 写完BaseController原有测试类报错了, 只好新写个专门测试用的类...
 
 maven本地仓库安装oracle jdbc, 进入jdbc6.jar所在文件夹:
 

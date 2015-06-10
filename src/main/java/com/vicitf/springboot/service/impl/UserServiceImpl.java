@@ -19,15 +19,17 @@ public class UserServiceImpl implements UserService {
 		UserBean userBean = null;
 		if (username != null && password != null) {
 			User user = userRepository.findByUsernameAndPassword(username, password);
-			userBean = new UserBean();
-			userBean.setId(user.getId());
-			userBean.setUsername(user.getUsername());
-			userBean.setRealname(user.getRealname());
-			userBean.setGender(user.getGender());
-			userBean.setEmail(user.getEmail());
-			userBean.setAvatar(user.getAvatar());
-			Long id = user.getId();
-			userRepository.updateLoginAddress(loginAddress, id);
+			if (user != null) {
+				Long id = user.getId();
+				userBean = new UserBean();
+				userBean.setId(id);
+				userBean.setUsername(user.getUsername());
+				userBean.setRealname(user.getRealname());
+				userBean.setGender(user.getGender());
+				userBean.setEmail(user.getEmail());
+				userBean.setAvatar(user.getAvatar());
+				userRepository.updateLoginAddress(loginAddress, id);
+			}
 		}
 		return userBean;
 	}
@@ -43,5 +45,10 @@ public class UserServiceImpl implements UserService {
 	public boolean existsByUsername(String username) {
 		Integer i = userRepository.existsByUsername(username);
 		return i > 0;
+	}
+
+	@Override
+	public boolean updateProfile(String avatar, String realname, String email, String gender, Long id) {
+		return userRepository.updateProfile(avatar, realname, email, gender, id) > 0;
 	}
 }

@@ -1,9 +1,10 @@
 package com.vicitf.springboot.config.webmvc;
 
+import javax.servlet.MultipartConfigElement;
+
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -18,11 +19,10 @@ public class SpringMvcConfiguration {
 	}
 
 	@Bean
-	public MultipartResolver multipartResolver() {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setDefaultEncoding("utf-8");
-		resolver.setMaxUploadSize(10240);
-		resolver.setMaxInMemorySize(4096);
-		return resolver;
+	public MultipartConfigElement multipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		factory.setMaxFileSize("200kb");
+		factory.setMaxRequestSize("200kb");
+		return factory.createMultipartConfig();
 	}
 }

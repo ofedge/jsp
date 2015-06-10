@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vicitf.springboot.Application;
+import com.vicitf.springboot.ApplicationTest;
 import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.domain.primray.User;
 import com.vicitf.springboot.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = ApplicationTest.class)
 public class UserRepositoryTest {
 	@Autowired
 	private UserService us;
@@ -30,7 +30,12 @@ public class UserRepositoryTest {
 	}
 	
 	@Test
-	public void existsByUsername() {
+	public void existsByUsernameTest() {
 		System.out.println(us.existsByUsername("admin"));
+	}
+	
+	@Test
+	public void updateProfileTest() {
+		System.out.println(us.updateProfile("default.png", "administrator", "administrator@gmail.com", "male", 1L));
 	}
 }
