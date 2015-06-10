@@ -47,41 +47,74 @@
     </div>
   </nav>
   <div class="container">
-    <div class="media">
-      <div class="media-left">
-        <img alt="avatar" src="/avatar/${sessionUser.avatar}" class="media-object img-rounded" width="96" height="96" />
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">User setting</div>
+        <div class="list-group">
+          <a href="#" id="show_update_profile" class="list-group-item active">Update profile</a>
+          <a href="#" id="show_update_password" class="list-group-item">UPdate password</a>
+        </div>
       </div>
-      <div class="media-body">
-        <form action="/user/updateProfile" method="post" enctype="multipart/form-data" class="col-sm-7">
+    </div>
+    <div class="col-sm-9">
+      <div class="media" id="update_profile">
+        <div class="media-left">
+          <img alt="avatar" src="/avatar/${sessionUser.avatar}" class="media-object img-rounded" width="128" height="128" />
+        </div>
+        <div class="media-body">
+          <form action="/user/updateProfile" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="avatar" class="control-label">avatar</label>
+              <input name="avatar" id="avatar" type="file" class="form-control" data-show-upload="false" accept="image/*" />
+              <p class="help-block">less than 1MB</p>
+            </div>
+            <div class="form-group">
+              <label for="realname" class="control-label">realname</label>
+              <input name="realname" id="realname" type="text" class="form-control" value="${sessionUser.realname }" />
+            </div>
+            <div class="form-group">
+              <label for="eamil" class="control-label">email</label>
+              <input name="email" id="email" type="email" class="form-control" value="${sessionUser.email }" />
+            </div>
+            <div class="form-group">
+              <label for="gender" class="control-label">gender</label>
+              <select name="gender" id="gender" class="form-control" value="${sessionUser.gender }">
+                <option value="male">male</option>
+                <c:choose>
+                  <c:when test="${sessionUser.gender == 'female'}">
+                    <option value="female" selected="selected">female</option>
+                  </c:when>
+                  <c:otherwise>
+                    <option value="female">female</option>
+                  </c:otherwise>
+                </c:choose>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Update profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="hidden" id="update_password">
+        <form class="col-sm-10">
           <div class="form-group">
-            <label for="avatar" class="control-label">avatar</label>
-            <input name="avatar" id="avatar" type="file" class="form-control" data-show-upload="false" accept="image/*" />
-            <p class="help-block">less than 1MB</p>
+            <label for="oldPassword" class="control-label">Old password</label>
+            <input type="password" id="oldPassword" class="form-control" placeholder="Old password"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
           <div class="form-group">
-            <label for="realname" class="control-label">realname</label>
-            <input name="realname" id="realname" type="text" class="form-control" value="${sessionUser.realname }" />
+            <label for="newPassword" class="control-label">New password</label>
+            <input type="password" id="newPassword" class="form-control" placeholder="New password"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
           <div class="form-group">
-            <label for="eamil" class="control-label">email</label>
-            <input name="email" id="email" type="email" class="form-control" value="${sessionUser.email }" />
+            <label for="reNewPassword" class="control-label">Confirm new password</label>
+            <input type="password" id="reNewPassword" class="form-control" placeholder="Confirm password"
+            data-container="body" data-toggle="popover" data-placement="right" data-content="" />
           </div>
           <div class="form-group">
-            <label for="gender" class="control-label">gender</label>
-            <select name="gender" id="gender" class="form-control" value="${sessionUser.gender }">
-              <option value="male">male</option>
-              <c:choose>
-                <c:when test="${sessionUser.gender == 'female'}">
-                  <option value="female" selected="selected">female</option>
-                </c:when>
-                <c:otherwise>
-                  <option value="female">female</option>
-                </c:otherwise>
-              </c:choose>
-            </select>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update profile</button>
+            <button class="btn btn-primary" id="updatePassword">Update password</button>
           </div>
         </form>
       </div>

@@ -35,7 +35,7 @@
     <div class="jumbotron">
       <form class="form-horizontal" action="/user/register" method="post" id="signup">
         <div class="form-group has-feedback">
-          <label for="username" class="col-sm-1 control-label">username</label>
+          <label for="username" class="col-sm-2 control-label">username</label>
           <div class="col-sm-5">
             <input type="text" class="form-control" id="username" name="username" placeholder="username"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" tabindex="1" />
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="form-group has-feedback">
-          <label for="password" class="col-sm-1 control-label">password</label>
+          <label for="password" class="col-sm-2 control-label">password</label>
           <div class="col-sm-5">
             <input type="password" class="form-control" id="password" name="password" placeholder="password"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" tabindex="2" />
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="form-group has-feedback">
-          <label for="repassword" class="col-sm-1 control-label">repassword</label>
+          <label for="repassword" class="col-sm-2 control-label">confirm password</label>
           <div class="col-sm-5">
             <input type="password" class="form-control" id="repassword" placeholder="repassword"
             data-container="body" data-toggle="popover" data-placement="right" data-content="" tabindex="3" />
