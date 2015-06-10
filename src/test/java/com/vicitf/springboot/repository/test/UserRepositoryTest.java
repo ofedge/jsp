@@ -19,7 +19,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void loginTest() {
-		UserBean userBean = us.login("admin", "admin");
+		UserBean userBean = us.login("admin", "admin", "localhost");
 		System.out.println(userBean.getId() + ", " + userBean.getUsername() + ", " + userBean.getAvatar());
 	}
 	

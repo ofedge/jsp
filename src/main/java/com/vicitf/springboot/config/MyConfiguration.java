@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSessionListener;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.bean.UserBean;
@@ -29,14 +27,6 @@ import com.vicitf.springboot.param.CommonParam;
  */
 @Configuration
 public class MyConfiguration {
-	// 去xml化进行时...
-	@Bean
-	public ViewResolver viewResolver(){
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/jsp/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
 	
 	// 把LoginFilter注册上, 了却一块心病, 虽然没有这个也能工作...
 	@Bean

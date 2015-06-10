@@ -26,8 +26,9 @@ public class UserController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/login")
-	public String login(String username, String password, HttpSession session) {
-		UserBean userBean = userService.login(username, password);
+	public String login(String username, String password, HttpSession session, HttpServletRequest request) {
+		String loginAddress = request.getRemoteAddr();
+		UserBean userBean = userService.login(username, password, loginAddress);
 		if (userBean != null) {
 			Map<Long, String> onlineUsers = (Map<Long, String>) session.getServletContext().getAttribute(CommonParam.ONLINE_USERS);
 			for (Long sessionUserId : onlineUsers.keySet()) {

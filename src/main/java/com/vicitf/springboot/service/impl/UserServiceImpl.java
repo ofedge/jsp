@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	@Override
-	public UserBean login(String username, String password) {
+	public UserBean login(String username, String password, String loginAddress) {
 		UserBean userBean = null;
 		if (username != null && password != null) {
 			User user = userRepository.findByUsernameAndPassword(username, password);
@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 			userBean.setGender(user.getGender());
 			userBean.setEmail(user.getEmail());
 			userBean.setAvatar(user.getAvatar());
+			Long id = user.getId();
+			userRepository.updateLoginAddress(loginAddress, id);
 		}
 		return userBean;
 	}
