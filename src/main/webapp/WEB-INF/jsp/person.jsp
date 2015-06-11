@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,6 +90,7 @@
             </button>
           </div>
         </div>
+        <div class="clearfix"></div>
         <div id="person_info">
           <table class="table">
             <thead>
@@ -101,6 +101,7 @@
                 <th>age</th>
                 <th>gender</th>
                 <th>country</th>
+                <th>option</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -108,7 +109,7 @@
         </div>
         <div class="pagination">
           <a class="previous btn btn-default">previous</a>
-          <span class="number"></span>/<span class="totalPages"></span>
+          <span class="number"></span>/<span class="totalPages"></span>(<span class="totalElements"></span>)
           <a class="next btn btn-default">next</a>
         </div>
       </fieldset>
@@ -147,6 +148,7 @@
               <label for="gender" class="control-label col-sm-2">gender:</label>
               <div class="col-sm-9">
                 <select name="gender" id="gender" class="form-control">
+                  <option value="unknown">please choose</option>
                   <option value="male">male</option>
                   <option value="female">female</option>
                 </select>

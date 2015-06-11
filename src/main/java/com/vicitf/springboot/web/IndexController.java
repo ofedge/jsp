@@ -1,13 +1,11 @@
 package com.vicitf.springboot.web;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
 	@Value("${springboot.app.openingtime}")
 	private int openingTime;
@@ -35,7 +33,7 @@ public class IndexController {
 	}
 
 	@RequestMapping("/outsideOfficeHour")
-	public String outsideOfficeHour(HttpServletRequest request) {
+	public String outsideOfficeHour() {
 		request.setAttribute("openingTime", openingTime);
 		request.setAttribute("closingTime", closingTime);
 		return "outsideOfficeHour";

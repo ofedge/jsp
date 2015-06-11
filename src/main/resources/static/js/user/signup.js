@@ -23,9 +23,8 @@ var signup = {
 						url: '/user/existsUser',
 						data: {'username': username},
 						type: 'post',
-						dataType: 'text',
 						success: function(data){
-							if(data == 'Y'){
+							if(data){
 								$('div.form-group:has(#username)').addClass('has-error');
 								$('#username').attr('data-content','username already exists.').popover('show');
 								signup.passSubmit.username = false;

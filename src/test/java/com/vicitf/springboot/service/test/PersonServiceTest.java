@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository.test;
+package com.vicitf.springboot.service.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vicitf.springboot.Application;
+import com.vicitf.springboot.ApplicationTest;
 import com.vicitf.springboot.bean.PersonBean;
 import com.vicitf.springboot.domain.secondary.Person;
 import com.vicitf.springboot.param.PageParam;
@@ -26,14 +26,14 @@ import com.vicitf.springboot.param.SortVo.OrderVo;
 import com.vicitf.springboot.service.PersonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-public class PersonRepositoryTest {
+@SpringApplicationConfiguration(classes = ApplicationTest.class)
+public class PersonServiceTest {
 	@Autowired
 	private PersonService ps;
 	
 	@Test
 	public void findByIdTest() {
-		Person p = ps.findById(1L);
+		Person p = ps.findById(9L);
 		System.out.println(p);
 	}
 	
@@ -97,5 +97,17 @@ public class PersonRepositoryTest {
 		PageParam pageParam = new PageParam(0, 10, param, sort);
 		PageVo<PersonBean> vo = ps.findAllPerson(pageParam);
 		System.out.println(vo);
+	}
+	
+	@Test
+	public void updatePersonTest() {
+		Person person = new Person();
+		person.setId(1L);
+		person.setName("Jennifer");
+		person.setEmail("JDILLY");
+		person.setAge(27);
+		person.setGender("female");
+		person.setCountryId(20L);
+		System.out.println(ps.updatePerson(person));
 	}
 }

@@ -16,7 +16,7 @@ import com.vicitf.springboot.service.CountryService;
 
 @RestController
 @RequestMapping("/country")
-public class CountryController {
+public class CountryController extends BaseController {
 	@Autowired
 	private CountryService countryService;
 

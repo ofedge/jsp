@@ -4,12 +4,12 @@ $(function(){
 });
 
 var bindPersonBtn = function() {
-	person.addPersonBtn();
 	person.previousBtn();
 	person.nextBtn();
 	person.searchBtn();
 	person.addPersonModalBtn();
-	person.addPersonSubmitBtn();
+	person.updateBtn();
+	person.loadCountryList();
 }
 
 var person = {
@@ -22,7 +22,8 @@ var person = {
 				sb.append('<td>').append(content[i].email).append('</td>');
 				sb.append('<td>').append(content[i].age).append('</td>');
 				sb.append('<td>').append(content[i].gender).append('</td>');
-				sb.append('<td>').append(content[i].country).append('</td></tr>');
+				sb.append('<td>').append(content[i].country).append('</td>');
+				sb.append('<td hover-data = "').append(content[i].id).append('"><button type="button" class="btn btn-default edit_person">update</button></td></tr>')
 			}
 			$(dom).html(sb.toString());
 			if(data.first == true) $('#person .previous').attr('disabled', 'disabled');
@@ -31,6 +32,7 @@ var person = {
 			else $('#person .next').removeAttr('disabled');
 			$('#person .number').html(parseInt(data.number) + 1);
 			$('#person .totalPages').html(data.totalPages);
+			$('#person .totalElements').html(data.totalElements);
 		},
 		transformData: function(dom, data) {
 			var sb = new StringBuffer();
@@ -39,14 +41,15 @@ var person = {
 				sb.append('<td>').append(data[i].name).append('</td>');
 				sb.append('<td>').append(data[i].email).append('</td>');
 				sb.append('<td>').append(data[i].age).append('</td>');
-				sb.append('<td>').append(data[i].gender).append('</td></tr>');
 			}
 			$(dom).html(sb.toString());
 		},
 		url: {
 			findAllPerson: '/person/findAllPerson',
 			save: '/person/save',
-			findCountryBean: '/country/findCountryBean'
+			findCountryBean: '/country/findCountryBean',
+			findById: '/person/findById/',
+			updatePerson: '/person/updatePerson'
 		},
 		pageRequest: {
 			number: 0,
@@ -55,6 +58,7 @@ var person = {
 			order: ''
 		},
 		person: {
+			id: 0,
 			name: '',
 			email: '',
 			age: 0,
@@ -62,6 +66,7 @@ var person = {
 			countryId: 0
 		},
 		clearPerson: function() {
+			person.person.id = 0;
 			person.person.name = '';
 			person.person.email = '';
 			person.person.age = 0;
@@ -87,33 +92,29 @@ var person = {
 				}
 			});
 		},
-		addPersonBtn: function() {
-			$('#add_person_form').submit(function(){
-				person.person.name = $('#name').val();
-				person.person.email = $('#email').val();
-				person.person.age = $('#age').val();
-				person.person.gender = $('#gender').val();
-				if (person.person.name == '' || person.person.email == '') {
-					return false;
+		addPersonSubmit: function(url) {
+			person.person.name = $('#name').val();
+			person.person.email = $('#email').val();
+			person.person.age = $('#age').val();
+			person.person.gender = $('#gender').val();
+			person.person.countryId = $('#country_id').val();
+			if (person.person.name == '' || person.person.email == '' || person.person.gender == 'unknown' || person.person.countryId == 0) {
+				return false;
+			}
+			$.ajax({
+				url: url,
+				data: person.person,
+				type: 'post',
+				dataType: 'json',
+				success: function(data) {
+					alert(data);
+				},
+				complete: function() {
+					person.findAll(person.pageRequest);
+					$('#add_person_modal').modal('hide');
+					person.clearPerson();
+					person.initFormFunc();
 				}
-				person.person.countryId = $('#country_id').val();
-				$.ajax({
-					url: person.url.save,
-					data: person.person,
-					type: 'post',
-					dataType: 'json',
-					success: function(data) {
-						
-					},
-					complete: function() {
-						person.findAll(person.pageRequest);
-						person.clearPerson();
-						$('#name').val('');
-						$('#email').val('');
-						$('#age').val('');
-					}
-				});
-				return false; // 不要跳
 			});
 		},
 		previousBtn: function() {
@@ -167,16 +168,15 @@ var person = {
 		},
 		addPersonModalBtn: function(){
 			$('#add_person').on('click', function(){
-				$('#name').val('');
-				$('#email').val('');
-				$('#age').val('');
-				person.loadCountryList();
+				person.initFormFunc();
+				person.person.id = 0;
 				$('#add_person_modal').modal('show');
+				person.addPersonSubmitBtn(person.url.save);
 			});
 		},
-		addPersonSubmitBtn: function(){
+		addPersonSubmitBtn: function(url){
 			$('#save_person').on('click', function(){
-				$('#add_person_form').trigger('submit');
+				person.addPersonSubmit(url);
 			});
 		},
 		loadCountryList: function(){
@@ -186,11 +186,47 @@ var person = {
 				dataType: 'json',
 				success: function(data){
 					var sb = new StringBuffer();
+					sb.append('<option value="0">please choose</option>');
 					for (var i = 0; i < data.length; i++) {
 						sb.append('<option value="').append(data[i].id).append('">').append(data[i].name).append('</option>');
 					}
 					$('#country_id').html(sb.toString());
 				}
 			});
+		},
+		updateBtn: function(){
+			$('#person_info').on('click', '.edit_person', function(){
+				person.initFormFunc();
+				var personId = $(this).parent().attr('hover-data');
+				$.ajax({
+					url: person.url.findById + personId,
+					type: 'get',
+					dataType: 'json',
+					success: function(data){
+						person.person.id = data.id;
+						person.person.name = data.name;
+						person.person.email = data.email;
+						person.person.age = data.age;
+						person.person.gender = data.gender;
+						person.person.countryId = data.countryId;
+						$('#name').val(data.name);
+						$('#email').val(data.email);
+						$('#age').val(data.age);
+						$('#gender').val(data.gender);
+						$('#country_id').val(data.countryId);
+					},
+					complete: function(){
+						$('#add_person_modal').modal('show');
+					}
+				});
+			});
+			person.addPersonSubmitBtn(person.url.updatePerson);
+		},
+		initFormFunc: function(){
+			$('#name').val('');
+			$('#email').val('');
+			$('#age').val('');
+			$('#gender').val('unknown');
+			$('#country_id').val(0);
 		}
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +62,7 @@
         </div>
         <div class="pagination">
           <a class="previous btn btn-default">previous</a>
-          <span class="number"></span>/<span class="totalPages"></span>
+          <span class="number"></span>/<span class="totalPages"></span>(<span class="totalElements"></span>)
           <a class="next btn btn-default">next</a>
         </div>
       </fieldset>
