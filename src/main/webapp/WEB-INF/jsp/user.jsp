@@ -49,10 +49,13 @@
   <div class="container">
     <div class="col-sm-3">
       <div class="panel panel-default">
-        <div class="panel-heading">User setting</div>
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          <span>User setting</span>
+        </div>
         <div class="list-group">
-          <a href="#" id="show_update_profile" class="list-group-item active">Update profile</a>
-          <a href="#" id="show_update_password" class="list-group-item">UPdate password</a>
+          <a href="javascript:void(0)" id="show_update_profile" class="list-group-item active">Update profile</a>
+          <a href="javascript:void(0)" id="show_update_password" class="list-group-item">Update password</a>
         </div>
       </div>
     </div>
@@ -97,7 +100,7 @@
         </div>
       </div>
       <div class="hidden" id="update_password">
-        <form class="col-sm-10">
+        <div class="col-sm-10">
           <div class="form-group">
             <label for="oldPassword" class="control-label">Old password</label>
             <input type="password" id="oldPassword" class="form-control" placeholder="Old password"
@@ -115,8 +118,9 @@
           </div>
           <div class="form-group">
             <button class="btn btn-primary" id="updatePassword">Update password</button>
+            <div id="updatePasswordInfo"></div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

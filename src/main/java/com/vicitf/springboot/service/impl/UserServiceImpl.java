@@ -43,12 +43,21 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean existsByUsername(String username) {
-		Integer i = userRepository.existsByUsername(username);
-		return i > 0;
+		return userRepository.existsByUsername(username) > 0;
 	}
 
 	@Override
 	public boolean updateProfile(String avatar, String realname, String email, String gender, Long id) {
 		return userRepository.updateProfile(avatar, realname, email, gender, id) > 0;
+	}
+
+	@Override
+	public boolean updatePassword(String password, Long id, String username) {
+		return userRepository.updatePassword(password, id, username) > 0;
+	}
+
+	@Override
+	public boolean verifyUserPassword(Long id, String username, String password) {
+		return userRepository.verifyUserPassword(id, username, password) > 0;
 	}
 }

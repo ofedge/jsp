@@ -2,9 +2,22 @@ $(function(){
 	user.avatarFileInput();
 	user.switchPage();
 	user.verify();
+	user.updatePasswordBtn();
 });
 
 var user = {
+		url: {
+			updatePassword: '/user/updatePassword'
+		},
+		param: {
+			oldPassword: '',
+			newPassword: ''
+		},
+		passSubmit: {
+			oldPassword: false,
+			newPassword: false,
+			reNewPassword: false
+		},
 		avatarFileInput: function(){
 			$("#avatar").fileinput({
 				maxFileSize: 200,
@@ -37,22 +50,22 @@ var user = {
 				if($(this).val() != ''){
 					$('div.form-group:has(#oldPassword)').removeClass('has-error');
 					$('#oldPassword').popover('hide');
-//					signup.passSubmit.password = true;
+					user.passSubmit.oldPassword = true;
 				}else{
 					$('div.form-group:has(#oldPassword)').addClass('has-error');
 					$('#oldPassword').attr('data-content','password can\'t be null.').popover('show');
-//					signup.passSubmit.password = false;
+					user.passSubmit.oldPassword = false;
 				}
 			});
 			$('#newPassword').on('keyup', function(){
 				if($(this).val() != ''){
 					$('div.form-group:has(#newPassword)').removeClass('has-error');
 					$('#newPassword').popover('hide');
-//					signup.passSubmit.password = true;
+					user.passSubmit.newPassword = true;
 				}else{
 					$('div.form-group:has(#newPassword)').addClass('has-error');
 					$('#newPassword').attr('data-content','password can\'t be null.').popover('show');
-//					signup.passSubmit.password = false;
+					user.passSubmit.newPassword = false;
 				}
 			});
 			$('#reNewPassword').on('keyup', function(){
@@ -61,11 +74,33 @@ var user = {
 				if(rePassword == password){
 					$('#reNewPassword').popover('hide');
 					$('div.form-group:has(#reNewPassword)').removeClass('has-error');
-//					signup.passSubmit.repassword = true;
+					user.passSubmit.reNewPassword = true;
 				}else{
 					$('#reNewPassword').attr('data-content','password mismatches!.').popover('show');
 					$('div.form-group:has(#reNewPassword)').addClass('has-error');
-//					signup.passSubmit.repassword = false;
+					user.passSubmit.reNewPassword = false;
+				}
+			});
+		},
+		updatePasswordBtn: function(){
+			$('#updatePassword').on('click', function(){
+				if(user.passSubmit.oldPassword && user.passSubmit.newPassword && user.passSubmit.reNewPassword){
+					user.param.oldPassword = $('#oldPassword').val();
+					user.param.newPassword = $('#newPassword').val();
+					$.ajax({
+						url: user.url.updatePassword,
+						data: user.param,
+						type: 'post',
+						success: function(data){
+							alert(data);
+							if(data){
+								alert('succeed, please sign in again.');
+								window.location.href = '/signin';
+							}else{
+								$('updatePasswordInfo').append('<p class="text-danger">Error, please try again.<p>');
+							}
+						}
+					});
 				}
 			});
 		}

@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository.test;
+package com.vicitf.springboot.service.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import com.vicitf.springboot.service.PersonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTest.class)
-public class PersonRepositoryTest {
+public class PersonServiceTest {
 	@Autowired
 	private PersonService ps;
 	

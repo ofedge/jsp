@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository.test;
+package com.vicitf.springboot.service.test;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.vicitf.springboot.repository.secondary.CountryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTest.class)
-public class CountryRepositoryTest {
+public class CountryServiceTest {
 	
 	@Autowired
 	private CountryRepository cr;

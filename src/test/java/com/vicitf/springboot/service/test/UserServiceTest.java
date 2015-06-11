@@ -1,4 +1,4 @@
-package com.vicitf.springboot.repository.test;
+package com.vicitf.springboot.service.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import com.vicitf.springboot.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTest.class)
-public class UserRepositoryTest {
+public class UserServiceTest {
 	@Autowired
 	private UserService us;
 	
@@ -37,5 +37,15 @@ public class UserRepositoryTest {
 	@Test
 	public void updateProfileTest() {
 		System.out.println(us.updateProfile("default.png", "administrator", "administrator@gmail.com", "male", 1L));
+	}
+	
+	@Test
+	public void updatePasswordTest() {
+		System.out.println(us.updatePassword("admin", 1L, "admin"));
+	}
+	
+	@Test
+	public void verifyUserPasswordTest() {
+		System.out.println(us.verifyUserPassword(1L, "admin", "admin"));
 	}
 }

@@ -41,4 +41,24 @@ public interface UserService {
 	 * @return
 	 */
 	boolean updateProfile(String avatar, String realname, String email, String gender, Long id);
+	
+	/**
+	 * 修改密码
+	 * 
+	 * @param password
+	 * @param id
+	 * @param username
+	 * @return
+	 */
+	boolean updatePassword(String password, Long id, String username);
+	
+	/**
+	 * 验证密码
+	 * 
+	 * @param id
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	boolean verifyUserPassword(Long id, String username, String password);
 }

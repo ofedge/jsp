@@ -89,7 +89,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "updateProfile", method = RequestMethod.POST)
 	public String updateProfile(@RequestParam(value = "avatar") MultipartFile avatar, String realname, String email, String gender) {
 		String avatarName = "";
-		UserBean sessionUser = (UserBean)session.getAttribute(CommonParam.SESSION_USER);
+		UserBean sessionUser = getSessionUser();
 		if (avatar.getSize() > 0L) {
 			avatarName = String.valueOf(System.currentTimeMillis()) + FileUtil.getFileExt(avatar.getOriginalFilename());
 			String dir = servletContext.getRealPath("/avatar");
@@ -118,5 +118,22 @@ public class UserController extends BaseController {
 			session.setAttribute(CommonParam.SESSION_USER, sessionUser);
 		}
 		return "redirect:/user";
+	}
+	
+	@RequestMapping("/updatePassword")
+	@ResponseBody
+	public boolean updatePassword(String oldPassword, String newPassword) {
+		if (StringUtils.isNotNull(oldPassword, newPassword)) {
+			UserBean userBean = getSessionUser();
+			Long id = userBean.getId();
+			String username = userBean.getUsername();
+			if (userService.verifyUserPassword(id, username, oldPassword)) {
+				if (userService.updatePassword(newPassword, id, username)) {
+					session.invalidate();
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
