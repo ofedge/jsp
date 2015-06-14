@@ -7,6 +7,7 @@ import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -30,5 +31,10 @@ public class SpringMvcConfiguration {
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer(){
 	    return new CustomizationBean();
+	}
+	
+	@Bean
+	public WebMvcConfigurerAdapter webAppConfig() {
+		return new WebAppConfig();
 	}
 }
