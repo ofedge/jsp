@@ -2,10 +2,12 @@ package com.vicitf.springboot.config.webmvc;
 
 import javax.servlet.MultipartConfigElement;
 
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -24,5 +26,15 @@ public class SpringMvcConfiguration {
 		factory.setMaxFileSize("200kb");
 		factory.setMaxRequestSize("200kb");
 		return factory.createMultipartConfig();
+	}
+	
+	@Bean
+	public EmbeddedServletContainerCustomizer containerCustomizer(){
+	    return new CustomizationBean();
+	}
+	
+	@Bean
+	public WebMvcConfigurerAdapter webAppConfig() {
+		return new WebAppConfig();
 	}
 }

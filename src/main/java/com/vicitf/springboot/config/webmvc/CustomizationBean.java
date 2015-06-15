@@ -1,4 +1,4 @@
-package com.vicitf.springboot.config;
+package com.vicitf.springboot.config.webmvc;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,7 +6,6 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 /**
  * 打包war情况下, 貌似端口设置是没用的...
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
  * @author vicitf
  *
  */
-@Component
 public class CustomizationBean implements EmbeddedServletContainerCustomizer {
 	
 	public static final int PORT = 8014; // 端口

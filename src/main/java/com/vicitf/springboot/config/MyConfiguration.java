@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.vicitf.springboot.Application;
 import com.vicitf.springboot.bean.UserBean;
+import com.vicitf.springboot.config.datasource.CacheConfiguration;
 import com.vicitf.springboot.config.filter.LoginFilter;
 import com.vicitf.springboot.param.CommonParam;
 
@@ -30,8 +31,8 @@ public class MyConfiguration {
 	
 	// 把LoginFilter注册上, 了却一块心病, 虽然没有这个也能工作...
 	@Bean
-	public FilterRegistrationBean registration(LoginFilter filter) {
-		FilterRegistrationBean bean = new FilterRegistrationBean(filter);
+	public FilterRegistrationBean registration() {
+		FilterRegistrationBean bean = new FilterRegistrationBean(new LoginFilter());
 		bean.setEnabled(true);
 		return bean;
 	}

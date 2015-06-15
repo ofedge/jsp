@@ -30,7 +30,7 @@ public class Application extends SpringBootServletInitializer{ // 打包war文�
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		// tomcat运行会执行下面配置的条幅和监听, jar方式会运行main方法里设置的
 		application.banner(new MyBanner()); // 条幅
-		application.showBanner(false);
+		application.showBanner(true);
 		application.listeners(new StartupListener()); //监听
     	return application.sources(Application.class);
 	}

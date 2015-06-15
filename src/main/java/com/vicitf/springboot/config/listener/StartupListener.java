@@ -30,6 +30,7 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
 		CommonParam.FILTER_LIST.add(".woff");
 		CommonParam.FILTER_LIST.add(".woff2");
 		CommonParam.FILTER_LIST.add("/");
+		CommonParam.FILTER_LIST.add("favicon.ico");
 		CommonParam.FILTER_LIST.add("/login");
 		CommonParam.FILTER_LIST.add("/signup");
 		CommonParam.FILTER_LIST.add("/signin");

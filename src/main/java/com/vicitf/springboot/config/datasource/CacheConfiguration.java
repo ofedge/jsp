@@ -1,4 +1,4 @@
-package com.vicitf.springboot.config;
+package com.vicitf.springboot.config.datasource;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
