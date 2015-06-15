@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Component;
-
 import com.vicitf.springboot.bean.UserBean;
 import com.vicitf.springboot.param.CommonParam;
 import com.vicitf.springboot.utils.CollectionUtils;
@@ -26,7 +24,6 @@ import com.vicitf.springboot.utils.CollectionUtils;
  * @author vicitf
  *
  */
-@Component
 public class LoginFilter implements Filter {
 
 	@Override
