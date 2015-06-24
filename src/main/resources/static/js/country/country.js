@@ -4,8 +4,6 @@ $(function(){
 });
 
 var bindCountryBtn = function() {
-	country.previousBtn();
-	country.nextBtn();
 }
 
 var country = {
@@ -19,13 +17,6 @@ var country = {
 				sb.append('<td>').append(content[i].code).append('</td></tr>');
 			}
 			$(dom).html(sb.toString());
-			if(data.first == true) $('#country .previous').attr('disabled', 'disabled');
-			else $('#country .previous').removeAttr('disabled');
-			if(data.last == true) $('#country .next').attr('disabled', 'disabled');
-			else $('#country .next').removeAttr('disabled');
-			$('#country .number').html(parseInt(data.number) + 1);
-			$('#country .totalPages').html(data.totalPages);
-			$('#country .totalElements').html(data.totalElements);
 		},
 		url: {
 			findAll: '/country/findAll',
@@ -43,19 +34,24 @@ var country = {
 				dataType: 'json',
 				success: function(data) {
 					country.transformPageData('#country #country_info tbody', data);
+					country.option.currentPage = data.number + 1;
+					country.option.totalPages = data.totalPages;
+				},
+				complete: function() {
+					$('#pagination').bootstrapPaginator(country.option);
 				}
 			});
 		},
-		previousBtn: function() {
-			$('#country .previous').on('click', function(){
-				country.pageRequest.number = parseInt($('#country .number').html()) - 2;
+		option: {
+			bootstrapMajorVersion: 3,
+			currentPage: 1,
+			totalPages: 10,
+			pageUrl: function(type, page, current){
+				return "javascript:void(0);";
+			},
+			onPageClicked: function(e,originalEvent,type,page){
+				country.pageRequest.number = page - 1;
 				country.findAll(country.pageRequest);
-			});
-		},
-		nextBtn: function() {
-			$('#country .next').on('click', function(){
-				country.pageRequest.number = parseInt($('#country .number').html());
-				country.findAll(country.pageRequest);
-			});
+			}
 		}
 }
