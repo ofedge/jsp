@@ -57,7 +57,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	 * @param email
 	 * @return
 	 */
-	@Query(value = "SELECT * FROM t_person P WHERE P.EMAIL LIKE %:email%", nativeQuery = true)
+	@Query(value = "SELECT p.id, p.name, p.email, p.age, p.gender, p.country_id FROM t_person p WHERE p.email LIKE %:email%", nativeQuery = true)
 	List<Person> findByEmail(@Param("email") String email);
 	
 	/**
