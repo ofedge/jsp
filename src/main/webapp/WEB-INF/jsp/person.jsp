@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>person</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="/css/person/person.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/css/person/person.css">
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-paginator.min.js"></script>
 <script src="/js/general.js"></script>
 <script src="/js/person/person.js"></script>
 </head>
@@ -108,9 +111,7 @@
           </table>
         </div>
         <div class="pagination">
-          <a class="previous btn btn-default">previous</a>
-          <span class="number"></span>/<span class="totalPages"></span>(<span class="totalElements"></span>)
-          <a class="next btn btn-default">next</a>
+          <ul id="pagination"></ul>
         </div>
       </fieldset>
     </div>
@@ -122,7 +123,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4>Add Person</h4>
+          <h4 id="modal_dialog_title">Add Person</h4>
         </div>
         <div class="modal-body">
           <form class="form-horizontal" id="add_person_form">

@@ -13,6 +13,7 @@ var bindPersonBtn = function() {
 }
 
 var person = {
+		// 结果转换成html填充到页面
 		transformPageData: function(dom, data) {
 			var sb = new StringBuffer();
 			var content = data.content;
@@ -26,14 +27,8 @@ var person = {
 				sb.append('<td hover-data = "').append(content[i].id).append('"><button type="button" class="btn btn-default edit_person">update</button></td></tr>')
 			}
 			$(dom).html(sb.toString());
-			if(data.first == true) $('#person .previous').attr('disabled', 'disabled');
-			else $('#person .previous').removeAttr('disabled');
-			if(data.last == true) $('#person .next').attr('disabled', 'disabled');
-			else $('#person .next').removeAttr('disabled');
-			$('#person .number').html(parseInt(data.number) + 1);
-			$('#person .totalPages').html(data.totalPages);
-			$('#person .totalElements').html(data.totalElements);
 		},
+		// 结果转换html填充到页面
 		transformData: function(dom, data) {
 			var sb = new StringBuffer();
 			for (var i = 0; i < data.length; i++) {
@@ -89,9 +84,27 @@ var person = {
 				dataType: 'json',
 				success: function(data) {
 					person.transformPageData('#person #person_info tbody', data);
+					person.option.currentPage = data.number + 1;
+					person.option.totalPages = data.totalPages;
+				},
+				complete: function() {
+					$('#pagination').bootstrapPaginator(person.option);
 				}
 			});
 		},
+		option: {
+			bootstrapMajorVersion: 3,
+			currentPage: 1,
+			totalPages: 10,
+			pageUrl: function(type, page, current){
+				return "javascript:void(0);";
+			},
+			onPageClicked: function(e,originalEvent,type,page){
+				person.pageRequest.number = page - 1;
+				person.findAll(person.pageRequest);
+			}
+		},
+		// person save 或 update 按钮绑定方法
 		addPersonSubmit: function(url) {
 			person.person.name = $('#name').val();
 			person.person.email = $('#email').val();
@@ -129,6 +142,7 @@ var person = {
 				person.findAll(person.pageRequest);
 			});
 		},
+		// search 按钮事件
 		searchBtn: function() {
 			$('#search_person').on('click', function(){
 				var paramArray = new Array();
@@ -163,22 +177,27 @@ var person = {
 					paramArray.push('%' + $('#country_key').val() + '%');
 				}
 				person.pageRequest.property = paramArray.join(',');
+				person.pageRequest.number = 0;
 				person.findAll(person.pageRequest);
 			});
 		},
+		// 显示添加 person 模态对话框
 		addPersonModalBtn: function(){
 			$('#add_person').on('click', function(){
 				person.initFormFunc();
 				person.person.id = 0;
+				$('#modal_dialog_title').html('Add Person');
 				$('#add_person_modal').modal('show');
 				person.addPersonSubmitBtn(person.url.save);
 			});
 		},
+		// 添加 person save 按钮
 		addPersonSubmitBtn: function(url){
 			$('#save_person').on('click', function(){
 				person.addPersonSubmit(url);
 			});
 		},
+		// 加载 country 下拉列表
 		loadCountryList: function(){
 			$.ajax({
 				url: person.url.findCountryBean,
@@ -194,6 +213,7 @@ var person = {
 				}
 			});
 		},
+		// update 按钮填充表单并显示 update 模态框
 		updateBtn: function(){
 			$('#person_info').on('click', '.edit_person', function(){
 				person.initFormFunc();
@@ -216,6 +236,7 @@ var person = {
 						$('#country_id').val(data.countryId);
 					},
 					complete: function(){
+						$('#modal_dialog_title').html('Update Person');
 						$('#add_person_modal').modal('show');
 					}
 				});
